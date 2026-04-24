@@ -1,0 +1,7 @@
+interface:
+  display_name: "Music Viral Creator"
+  short_description: "Viral music planning, prompts, and growth loops"
+  default_prompt: "Use $music-viral-creator to analyze trends, model a viral short-video song, write spreadable lyrics, plan AI cover/A-B versions, control generation cost, create release copy, and learn from comments plus heat metrics."
+
+policy:
+  allow_implicit_invocation: true
