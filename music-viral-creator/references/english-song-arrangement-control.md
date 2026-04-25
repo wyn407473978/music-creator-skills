@@ -1,11 +1,11 @@
 # English Song Arrangement Control
 
-Use this before creating any music-2.6 prompt for English DJ rock, EDM rock, pop rock, cinematic rock, or high-energy short-video songs.
+Use this before creating any music-2.6 prompt for English songs across genres: pop, rock, EDM, hip-hop, R&B, country, folk, indie, cinematic, lo-fi, dance, DJ rock, and high-energy short-video songs.
 
 ## Core Formula
 
 ```text
-English hook -> verse/build -> pre-chorus/drop build -> chorus/drop -> post-chorus hook
+English hook -> verse/build -> pre-chorus/lift -> chorus/drop/climax -> post-chorus hook
 ```
 
 The song must have natural English phrasing and a strong chorus/drop.
@@ -35,14 +35,25 @@ The song must have natural English phrasing and a strong chorus/drop.
 - Male rock: A2-E4, occasional F4.
 - Male cinematic low: G2-D4.
 
+## Genre Selection Rules
+
+- Pop: catchy hook, polished drums, clean vocal, bright chorus.
+- Rock: guitar riff, live drums, strong snare, bigger chorus.
+- EDM/Dance: four-on-floor kick, sidechain bass, synth hook, drop.
+- Hip-hop: rhythmic hook, 808 bass, tight drums, confident vocal.
+- R&B: smooth vocal, warm chords, pocket groove, emotional topline.
+- Country/Folk: story lyric, acoustic guitar, organic drums, singalong chorus.
+- Indie/Lo-fi: intimate vocal, textured guitars/keys, softer dynamics.
+- Cinematic: dramatic drums, strings/brass, trailer-like chorus lift.
+
 ## Chorus/Drop Rules
 
 - First hook or riff within 0-5s.
-- Main chorus/drop by 10-20s.
-- Chorus/drop must lift with at least 3 of:
+- Main chorus/drop/climax by 10-25s.
+- Chorus/drop/climax must lift with genre-appropriate tools. Choose at least 3:
   - stronger drums
   - sub bass
-  - distorted guitar
+  - guitar or piano or synth lead
   - synth lead
   - vocal doubles/harmony
   - crash/impact
@@ -77,7 +88,14 @@ Always include:
     "post_chorus": "",
     "hook_motif": ""
   },
-  "chorus_drop_plan": {
+  "arrangement": {
+    "drums": "",
+    "bass": "",
+    "chords": "",
+    "lead_instrument": "",
+    "texture": ""
+  },
+  "chorus_or_drop_plan": {
     "entry_time": "",
     "vocal_lift": "",
     "drums": "",

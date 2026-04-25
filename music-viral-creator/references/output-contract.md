@@ -1,6 +1,30 @@
 # Output Contract
 
-Use this template for English DJ/rock vocal song tasks.
+Use this template for English all-genre vocal song tasks.
+
+## 0. Song Metadata
+
+```json
+{
+  "project_id": "",
+  "song_id": "",
+  "title": "",
+  "language": "English",
+  "genre": "",
+  "subgenre": "",
+  "mood": "",
+  "theme": "",
+  "bpm": 0,
+  "key": "",
+  "duration": "",
+  "version_name": "",
+  "version_role": "main / alternate / demo / test",
+  "hook_line": "",
+  "target_platform": "",
+  "usage_scene": "",
+  "generation_status": "planned / prompt_ready / generated / published / archived"
+}
+```
 
 ## 1. 趋势抽象
 
@@ -8,7 +32,7 @@ Use this template for English DJ/rock vocal song tasks.
 - 英文Hook类型：chant / slogan / emotional line / anthem chorus
 - BPM规律：
 - 结构规律：
-- 声音主题：DJ / rock / cinematic / dark / sports / heartbreak
+- 声音主题：pop / rock / EDM / hip-hop / R&B / country / folk / indie / cinematic / lo-fi / dance
 - 可复用结论：
 
 ## 2. 英文歌结构
@@ -56,16 +80,16 @@ Highest note word：
 Caption line：
 ```
 
-## 4. 编曲与Drop设计
+## 4. 编曲与高潮设计
 
 ```text
 Drum groove：
 Kick：
 Snare/Clap：
 Bass/Sub：
-Guitar/Synth motif：
+Lead instrument / Motif：
 Build-up：
-Chorus/Drop entry：
+Chorus/Drop/Climax entry：
 Second hit：
 Mix direction：
 ```
@@ -74,6 +98,7 @@ Mix direction：
 
 ```json
 {
+  "song_metadata": {},
   "style": "",
   "mood": "",
   "bpm": 0,
@@ -101,25 +126,17 @@ Mix direction：
     "post_chorus": "",
     "hook_motif": ""
   },
-  "rhythm_design": {
-    "drum_pattern": "",
-    "kick": "",
-    "snare_clap": "",
-    "percussion": "",
-    "groove_feel": ""
-  },
-  "riff_motif": {
-    "type": "",
-    "description": "",
-    "repeat_pattern": "",
-    "variation": ""
-  },
-  "chorus_drop_plan": {
-    "entry_time": "",
-    "vocal_lift": "",
+  "arrangement": {
     "drums": "",
     "bass": "",
-    "guitar_or_synth": "",
+    "chords": "",
+    "lead_instrument": "",
+    "texture": ""
+  },
+  "chorus_or_drop_plan": {
+    "entry_time": "",
+    "vocal_lift": "",
+    "instrument_lift": "",
     "harmony": "",
     "second_hit": ""
   },
@@ -153,16 +170,19 @@ Mix direction：
 ## 7. A/B版本
 
 ```text
-Version A: EDM Rock Anthem
+Version A: Pop Hook
 Prompt：
+Metadata：
 Score：
 
-Version B: Pop Rock Chorus
+Version B: Energetic / EDM / Rock
 Prompt：
+Metadata：
 Score：
 
-Version C: Cinematic Trailer Rock
+Version C: Emotional / R&B / Indie / Cinematic
 Prompt：
+Metadata：
 Score：
 
 推荐主推版本：

@@ -1,7 +1,7 @@
 interface:
   display_name: "Music Viral Creator"
-  short_description: "English DJ rock song generator"
-  default_prompt: "Use $music-viral-creator to create an English DJ/rock short-video song with a strong hook, natural lyrics, chorus/drop, rhythm slices, A/B versions, release copy, and heat learning."
+  short_description: "English all-genre song generator"
+  default_prompt: "Use $music-viral-creator to create an English short-video song in the best-fit genre, include song metadata, natural lyrics, chorus/drop or climax, rhythm slices, A/B versions, release copy, and heat learning."
 
 policy:
   allow_implicit_invocation: true

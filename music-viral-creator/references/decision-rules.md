@@ -1,6 +1,6 @@
 # Decision Rules
 
-Use these rules for English DJ/rock vocal songs.
+Use these rules for English vocal songs across genres.
 
 ## Heat Score
 
@@ -19,7 +19,7 @@ Score 0-10:
 
 - 前5秒Hook：English vocal/riff hook appears immediately.
 - 英文副歌记忆点：hook line is short, repeatable, and captionable.
-- Chorus/Drop冲击：drums, bass, vocal, guitar/synth lift together.
+- Chorus/Drop冲击：genre-appropriate vocal, drums, bass, harmony, and lead instrument lift together.
 - 剪辑适配：clear cuts at 0-5s, 10-15s, 20s.
 - 平台适配：fits target short-video lane.
 
@@ -48,10 +48,13 @@ else:
 
 First 100 posts test:
 
-- EDM rock anthem
-- Pop rock heartbreak
-- Cinematic trailer rock
-- Dark cyberpunk vocal hook
-- DJ chant/drop song
+- Pop hook
+- R&B emotional hook
+- Hip-hop melodic hook
+- EDM/Dance chorus
+- Rock anthem
+- Country/Folk story
+- Indie/Lo-fi intimate song
+- Cinematic trailer song
 
 Do not kill a lane from fewer than 10 tests.

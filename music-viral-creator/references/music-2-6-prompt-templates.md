@@ -1,21 +1,40 @@
-# music-2.6 English Song Prompt Templates
+# music-2.6 English All-Genre Song Prompt Templates
 
-Core rule: generate **English vocal songs** with DJ/rock energy, not Chinese lyrics and not pure instrumental unless requested.
+Core rule: generate **English vocal songs across genres**, not only DJ/Rock. Always include `song_metadata`.
 
 Use structured control:
 
 ```text
-style + mood + bpm + key + vocal + lyrics + lyric_phrasing + rhythm_design + riff_motif + chorus_drop_plan + arrangement_arc + edit_points + mix + avoid
+song_metadata + style + mood + bpm + key + vocal + lyrics + lyric_phrasing + rhythm_design + arrangement + chorus_or_drop_plan + edit_points + mix + avoid
 ```
 
 ## Standard English Song Template
 
 ```json
 {
-  "style": "EDM rock / pop rock / cinematic rock",
-  "mood": "powerful, emotional, anthemic",
-  "bpm": 128,
-  "key": "E minor",
+  "song_metadata": {
+    "project_id": "{project id}",
+    "song_id": "{song id}",
+    "title": "{song title}",
+    "language": "English",
+    "genre": "{Pop / Rock / EDM / Hip-hop / R&B / Country / Folk / Indie / Cinematic / Lo-fi / Dance}",
+    "subgenre": "{specific subgenre}",
+    "mood": "{emotional mood}",
+    "theme": "{song theme}",
+    "bpm": 0,
+    "key": "{key}",
+    "duration": "60-90s",
+    "version_name": "{version name}",
+    "version_role": "main",
+    "hook_line": "{short repeatable English hook}",
+    "target_platform": "{TikTok / Reels / Shorts / Xiaohongshu / Bilibili}",
+    "usage_scene": "{edit scene}",
+    "generation_status": "prompt_ready"
+  },
+  "style": "{genre and style}",
+  "mood": "{mood}",
+  "bpm": 0,
+  "key": "{key}",
   "duration": "60-90s",
   "language": "English",
   "vocal": {
@@ -39,29 +58,21 @@ style + mood + bpm + key + vocal + lyrics + lyric_phrasing + rhythm_design + rif
     "post_chorus": "repeat hook or chant",
     "hook_motif": "3-5 note repeatable vocal motif"
   },
-  "rhythm_design": {
-    "drum_pattern": "EDM-rock hybrid",
-    "kick": "punchy",
-    "snare_clap": "wide snare/clap",
-    "percussion": "snare build before chorus/drop",
-    "groove_feel": "tight, driving, edit-friendly"
+  "arrangement": {
+    "drums": "{genre-appropriate drums}",
+    "bass": "{bass movement}",
+    "chords": "{chord progression}",
+    "lead_instrument": "{piano / guitar / synth / strings / 808 / etc.}",
+    "texture": "{pads / acoustic / distorted / warm / cinematic}"
   },
-  "riff_motif": {
-    "type": "guitar riff or synth hook",
-    "description": "short original motif supporting the vocal hook",
-    "repeat_pattern": "repeat every 2 bars",
-    "variation": "bigger layer at second hit"
-  },
-  "chorus_drop_plan": {
+  "chorus_or_drop_plan": {
     "entry_time": "15s",
-    "vocal_lift": "chorus rises above verse with stronger projection",
-    "drums": "full drums enter at chorus/drop",
-    "bass": "sub bass supports downbeat",
-    "guitar_or_synth": "distorted guitar or wide synth hook opens up",
+    "vocal_lift": "{how chorus lifts}",
+    "instrument_lift": "{how arrangement gets bigger}",
     "harmony": "add vocal doubles/harmony on hook",
-    "second_hit": "20s bigger crash and repeated hook"
+    "second_hit": "20s repeated hook or bigger moment"
   },
-  "arrangement_arc": "hook intro -> verse/build -> pre-chorus lift -> chorus/drop -> post-chorus hook",
+  "arrangement_arc": "hook intro -> verse -> pre-chorus/build -> chorus/drop -> post-chorus hook",
   "edit_points": [
     {"time": "0-5s", "cue": "vocal/riff hook", "use": "opening"},
     {"time": "10-15s", "cue": "build/drop", "use": "transition"},
@@ -74,7 +85,7 @@ style + mood + bpm + key + vocal + lyrics + lyric_phrasing + rhythm_design + rif
     "awkward translated English",
     "spoken recitation",
     "weak chorus",
-    "late drop",
+    "late hook",
     "flat arrangement",
     "muddy vocal",
     "copied melody",
@@ -83,16 +94,35 @@ style + mood + bpm + key + vocal + lyrics + lyric_phrasing + rhythm_design + rif
 }
 ```
 
-## Template 1: EDM Rock Anthem
+## Template 1: Pop Hook
 
-Use for sports, game highlight, transformation, fast edits.
+Use for broad short-video appeal, lifestyle, travel, beauty, emotional but accessible content.
 
 ```json
 {
-  "style": "EDM rock anthem, English vocal",
-  "mood": "powerful, victorious, explosive",
-  "bpm": 128,
-  "key": "E minor",
+  "song_metadata": {
+    "project_id": "bright-night-pop",
+    "song_id": "bright-night-pop-vA",
+    "title": "Bright Tonight",
+    "language": "English",
+    "genre": "Pop",
+    "subgenre": "Dance Pop",
+    "mood": "bright, confident, catchy",
+    "theme": "living in the moment",
+    "bpm": 118,
+    "key": "A major",
+    "duration": "60s",
+    "version_name": "Pop Hook Version",
+    "version_role": "main",
+    "hook_line": "We shine so bright tonight",
+    "target_platform": "TikTok / Reels / Shorts",
+    "usage_scene": "lifestyle, travel, transformation",
+    "generation_status": "prompt_ready"
+  },
+  "style": "modern English dance pop",
+  "mood": "bright, catchy, uplifting",
+  "bpm": 118,
+  "key": "A major",
   "duration": "60s",
   "language": "English",
   "vocal": {
@@ -101,11 +131,11 @@ Use for sports, game highlight, transformation, fast edits.
     "emotion": "unstoppable",
     "range": "A3-E5"
   },
-  "lyrics": "Verse: We light the dark, we break the line\nPre: Feel the thunder getting closer\nChorus: We rise, we burn, we own the night\nPost: Own the night, own the night",
+  "lyrics": "Verse: City lights are waking up with me\nPre: I feel the rhythm underneath my feet\nChorus: We shine so bright tonight\nPost: So bright, so bright tonight",
   "lyric_phrasing": {
-    "hook_line": "We own the night",
+    "hook_line": "We shine so bright tonight",
     "rhyme_scheme": "simple anthem rhyme",
-    "stressed_words": ["rise", "burn", "own", "night"],
+    "stressed_words": ["shine", "bright", "tonight"],
     "breath_points": "breath before chorus, connect short hook phrases",
     "avoid_high_note_words": ["the", "we"]
   },
@@ -116,49 +146,60 @@ Use for sports, game highlight, transformation, fast edits.
     "post_chorus": "chant repeat of hook",
     "hook_motif": "4-note rising anthem motif"
   },
-  "rhythm_design": {
-    "drum_pattern": "four-on-floor EDM rock",
-    "kick": "punchy sidechained kick",
-    "snare_clap": "wide clap/snare",
-    "percussion": "snare roll before chorus",
-    "groove_feel": "festival rock energy"
+  "arrangement": {
+    "drums": "clean dance-pop groove",
+    "bass": "warm sidechain bass",
+    "chords": "bright pop progression",
+    "lead_instrument": "plucky synth hook",
+    "texture": "wide modern pop pads"
   },
-  "riff_motif": {
-    "type": "distorted guitar + synth stab",
-    "description": "original 2-bar riff supporting the hook",
-    "repeat_pattern": "repeat every chorus",
-    "variation": "add octave layer at second hit"
-  },
-  "chorus_drop_plan": {
+  "chorus_or_drop_plan": {
     "entry_time": "15s",
-    "vocal_lift": "bigger belted chorus",
-    "drums": "full kick/snare at chorus",
-    "bass": "sub bass hits with downbeat",
-    "guitar_or_synth": "wide guitar and supersaw open",
-    "harmony": "vocal doubles on 'own the night'",
+    "vocal_lift": "chorus becomes brighter and more open",
+    "instrument_lift": "bigger drums, bass, and synth hook",
+    "harmony": "vocal doubles on hook",
     "second_hit": "20s crash + hook repeat"
   },
-  "arrangement_arc": "hook preview -> verse -> rising pre -> chorus/drop -> chant hook",
+  "arrangement_arc": "hook preview -> light verse -> pre lift -> bright chorus -> post hook",
   "edit_points": [
     {"time": "0-5s", "cue": "hook preview", "use": "opening"},
     {"time": "15s", "cue": "chorus/drop", "use": "main reveal"},
     {"time": "20s", "cue": "hook repeat", "use": "climax"}
   ],
-  "mix": "clear lead vocal, loud drums, wide guitars/synths, heavy but clean bass",
+  "mix": "clear lead vocal, polished pop drums, wide synths, controlled bass",
   "quality": "high",
   "avoid": ["Chinese lyrics", "weak chorus", "spoken vocal", "late drop", "copied melody"]
 }
 ```
 
-## Template 2: Pop Rock Heartbreak
+## Template 2: R&B / Pop Heartbreak
 
 Use for emotional edits, night drive, relationship story, cinematic short video.
 
 ```json
 {
-  "style": "English pop rock, emotional EDM-rock chorus",
+  "song_metadata": {
+    "project_id": "rain-memory-rnb",
+    "song_id": "rain-memory-rnb-vA",
+    "title": "In The Rain",
+    "language": "English",
+    "genre": "R&B",
+    "subgenre": "Alternative R&B Pop",
+    "mood": "heartbroken, intimate, cinematic",
+    "theme": "missing someone after love ends",
+    "bpm": 86,
+    "key": "B minor",
+    "duration": "75s",
+    "version_name": "Late Night R&B Version",
+    "version_role": "main",
+    "hook_line": "I still hear you in the rain",
+    "target_platform": "TikTok / Reels / Shorts",
+    "usage_scene": "night drive, breakup edit, memory video",
+    "generation_status": "prompt_ready"
+  },
+  "style": "English alternative R&B pop",
   "mood": "heartbroken, cinematic, powerful",
-  "bpm": 96,
+  "bpm": 86,
   "key": "B minor",
   "duration": "60-90s",
   "language": "English",
@@ -183,25 +224,17 @@ Use for emotional edits, night drive, relationship story, cinematic short video.
     "post_chorus": "repeat final phrase softly",
     "hook_motif": "falling 4-note emotional motif"
   },
-  "rhythm_design": {
-    "drum_pattern": "half-time pop rock",
-    "kick": "warm deep kick",
-    "snare_clap": "big emotional snare",
-    "percussion": "subtle tom fill into chorus",
-    "groove_feel": "cinematic night drive"
+  "arrangement": {
+    "drums": "slow half-time R&B drums",
+    "bass": "warm sub bass following emotional root movement",
+    "chords": "minor seventh emotional progression",
+    "lead_instrument": "soft electric piano and ambient guitar",
+    "texture": "late-night pads and reverb"
   },
-  "riff_motif": {
-    "type": "clean guitar arpeggio into distorted chorus",
-    "description": "simple original guitar motif",
-    "repeat_pattern": "verse arpeggio, chorus power chords",
-    "variation": "add octave guitar at second chorus hit"
-  },
-  "chorus_drop_plan": {
+  "chorus_or_drop_plan": {
     "entry_time": "18s",
     "vocal_lift": "chorus opens with stronger chest/mix voice",
-    "drums": "full snare and crash at chorus",
-    "bass": "warm bass follows root motion",
-    "guitar_or_synth": "distorted guitar widens chorus",
+    "instrument_lift": "wider pads, stronger snare, warmer bass",
     "harmony": "soft harmony on final hook phrase",
     "second_hit": "22s extra crash and guitar layer"
   },
@@ -224,6 +257,25 @@ Use for trailer, heroic reveal, product launch, sports montage.
 ```json
 {
   "style": "cinematic trailer rock with English vocal hook",
+  "song_metadata": {
+    "project_id": "legends-tonight-trailer",
+    "song_id": "legends-tonight-trailer-vA",
+    "title": "Legends Tonight",
+    "language": "English",
+    "genre": "Cinematic",
+    "subgenre": "Trailer Rock",
+    "mood": "epic, heroic, dramatic",
+    "theme": "becoming legendary",
+    "bpm": 100,
+    "key": "D minor",
+    "duration": "60s",
+    "version_name": "Trailer Rock Version",
+    "version_role": "main",
+    "hook_line": "We are legends tonight",
+    "target_platform": "TikTok / Reels / Shorts / Bilibili",
+    "usage_scene": "heroic reveal, sports montage, trailer",
+    "generation_status": "prompt_ready"
+  },
   "mood": "epic, heroic, dramatic",
   "bpm": 100,
   "key": "D minor",
@@ -250,25 +302,17 @@ Use for trailer, heroic reveal, product launch, sports montage.
     "post_chorus": "choir-like repeat",
     "hook_motif": "bold 3-note heroic motif"
   },
-  "rhythm_design": {
-    "drum_pattern": "half-time trailer rock",
-    "kick": "deep trailer boom",
-    "snare_clap": "huge cinematic snare",
-    "percussion": "toms rising into chorus",
-    "groove_feel": "massive heroic march"
+  "arrangement": {
+    "drums": "half-time trailer drums with toms",
+    "bass": "sub boom on downbeats",
+    "chords": "dark heroic minor progression",
+    "lead_instrument": "electric guitar and brass motif",
+    "texture": "cinematic strings and choir pad"
   },
-  "riff_motif": {
-    "type": "guitar + brass motif",
-    "description": "original heroic motif supporting vocal hook",
-    "repeat_pattern": "repeat with larger orchestration",
-    "variation": "add choir/brass at 20s"
-  },
-  "chorus_drop_plan": {
+  "chorus_or_drop_plan": {
     "entry_time": "15s",
     "vocal_lift": "heroic chorus projection",
-    "drums": "full trailer drums",
-    "bass": "sub boom on downbeat",
-    "guitar_or_synth": "wide guitar and brass hits",
+    "instrument_lift": "full trailer drums, guitar, brass, strings",
     "harmony": "choir texture under hook",
     "second_hit": "20s biggest trailer impact"
   },
@@ -284,10 +328,89 @@ Use for trailer, heroic reveal, product launch, sports montage.
 }
 ```
 
+## Template 4: Country Folk Story
+
+Use for storytelling, road trip, warm lifestyle, emotional memory.
+
+```json
+{
+  "song_metadata": {
+    "project_id": "back-road-home",
+    "song_id": "back-road-home-vA",
+    "title": "Back Road Home",
+    "language": "English",
+    "genre": "Country",
+    "subgenre": "Country Folk Pop",
+    "mood": "warm, nostalgic, honest",
+    "theme": "coming home and remembering where you belong",
+    "bpm": 92,
+    "key": "G major",
+    "duration": "75s",
+    "version_name": "Country Folk Version",
+    "version_role": "main",
+    "hook_line": "Take me down that back road home",
+    "target_platform": "TikTok / Reels / Shorts",
+    "usage_scene": "road trip, family, memory, countryside",
+    "generation_status": "prompt_ready"
+  },
+  "style": "English country folk pop",
+  "mood": "warm, nostalgic, heartfelt",
+  "bpm": 92,
+  "key": "G major",
+  "duration": "75s",
+  "language": "English",
+  "vocal": {
+    "gender": "male",
+    "tone": "warm, honest, slightly raspy",
+    "emotion": "nostalgic",
+    "range": "A2-D4"
+  },
+  "lyrics": "Verse: Dust on my boots and gold in the sky\nPre: Every mile still knows my name\nChorus: Take me down that back road home\nPost: Back road home, back road home",
+  "lyric_phrasing": {
+    "hook_line": "Take me down that back road home",
+    "rhyme_scheme": "simple country rhyme",
+    "stressed_words": ["take", "back", "road", "home"],
+    "breath_points": "natural breath at sentence endings",
+    "avoid_high_note_words": ["me", "that"]
+  },
+  "topline_plan": {
+    "verse": "conversational and warm",
+    "pre_chorus": "slight lift",
+    "chorus": "open singalong hook",
+    "post_chorus": "soft repeat",
+    "hook_motif": "simple 4-note singalong motif"
+  },
+  "arrangement": {
+    "drums": "soft country groove",
+    "bass": "warm acoustic bass",
+    "chords": "G-D-Em-C style warm progression",
+    "lead_instrument": "acoustic guitar and light pedal steel",
+    "texture": "organic, warm, not overproduced"
+  },
+  "chorus_or_drop_plan": {
+    "entry_time": "18s",
+    "vocal_lift": "chorus opens into a singalong",
+    "instrument_lift": "add harmony, light drums, wider acoustic guitar",
+    "harmony": "simple country harmony on hook",
+    "second_hit": "24s repeat hook with harmony"
+  },
+  "arrangement_arc": "warm guitar intro -> story verse -> lifted chorus -> soft hook repeat",
+  "edit_points": [
+    {"time": "0-5s", "cue": "acoustic hook", "use": "warm opening"},
+    {"time": "18s", "cue": "chorus hook", "use": "memory reveal"},
+    {"time": "24s", "cue": "harmony repeat", "use": "emotional close"}
+  ],
+  "mix": "warm vocal, acoustic guitar upfront, soft drums, organic space",
+  "quality": "high",
+  "avoid": ["Chinese lyrics", "fake country accent", "overly EDM drums", "awkward English"]
+}
+```
+
 ## Selection Rules
 
-- Sports/game/transformation: Template 1.
-- Emotional/night/relationship: Template 2.
+- Broad catchy short-video pop: Template 1.
+- Emotional/night/relationship/R&B: Template 2.
 - Trailer/heroic/product reveal: Template 3.
+- Warm story/road/family/country: Template 4.
 - For more rock: increase distorted guitars, live drums, lower BPM or half-time feel.
 - For more DJ: increase four-on-floor kick, synth lead, riser, sidechain bass.

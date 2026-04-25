@@ -1,12 +1,13 @@
 # Music Viral Creator Skill
 
-`music-viral-creator` is a Hermes Agent skill for English short-video songs: DJ rock, EDM rock, pop rock, cinematic trailer rock, and high-impact English hooks. It is designed for agents using minimax2.7 and music generation models such as music-2.6.
+`music-viral-creator` is a Hermes Agent skill for English short-video songs across genres: pop, rock, EDM, hip-hop, R&B, country, folk, indie, cinematic, lo-fi, dance, DJ rock, and high-impact English hooks. It is designed for agents using minimax2.7 and music generation models such as music-2.6.
 
 ## What It Does
 
 - English song trend abstraction
-- Viral DJ/rock song structure modeling
+- Viral all-genre English song structure modeling
 - English lyric and topline generation
+- Song metadata records for every generated song/version
 - Drop, riff, groove, and climax design
 - Structured music-2.6 English song prompt generation
 - Instrumental drop, riff, groove, and climax control
@@ -40,10 +41,11 @@ music-viral-creator/
 ## Core Workflow
 
 1. Analyze English song trends and extract reusable rules.
-2. Model the 0-30s viral English song structure.
-3. Write a short, natural English hook and chorus.
-4. Design the drop, riff, groove, bass, and edit points.
-5. Generate a structured music-2.6 English song prompt.
+2. Create song metadata: title, genre, mood, BPM, key, version, target platform, and status.
+3. Model the 0-30s viral English song structure.
+4. Write a short, natural English hook and chorus.
+5. Design genre-specific arrangement, groove, climax, and edit points.
+6. Generate a structured music-2.6 English song prompt.
 5. Score the concept and run the decision engine.
 6. Generate one or more versions only when the score justifies it.
 7. Create edit slices, release copy, and account-matrix plans.
@@ -83,7 +85,7 @@ make an English rock song
 Use structured control:
 
 ```text
-style + mood + bpm + key + vocal + lyrics + lyric_phrasing + rhythm_design + riff_motif + chorus_drop_plan + arrangement_arc + edit_points + mix + avoid
+song_metadata + style + mood + bpm + key + vocal + lyrics + lyric_phrasing + arrangement + chorus_or_drop_plan + arrangement_arc + edit_points + mix + avoid
 ```
 
 See `music-viral-creator/references/music-2-6-prompt-templates.md` for ready-to-use templates.
