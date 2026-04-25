@@ -1,6 +1,6 @@
 # Lyric Melody Alignment
 
-Use this before creating any music-2.6 prompt with lyrics. The goal is to make the generated vocal melody follow the lyric meaning, Mandarin stress, breath, and natural vocal range.
+Use this before creating any music-2.6 prompt with lyrics. The goal is to make the generated vocal melody follow the lyric meaning, Mandarin stress, breath, natural vocal range, and emotional climax.
 
 ## Core Rule
 
@@ -8,6 +8,12 @@ Do not ask the music model to invent melody from style alone. First convert the 
 
 ```text
 lyrics -> phrase length -> stress words -> breath points -> pitch contour -> vocal range -> prompt
+```
+
+For emotional songs, also plan:
+
+```text
+verse restraint -> pre-chorus tension -> chorus release -> post-chorus/outro afterglow
 ```
 
 ## Lyric Prosody Checklist
@@ -26,9 +32,32 @@ For each lyric line:
 - Verse: low-mid register, speech-like, mostly stepwise motion.
 - Pre-chorus: gradual upward contour; build tension without large interval jumps.
 - Chorus: use a short repeatable motif; place the highest note on the strongest emotional word.
+- Climax chorus: raise vocal intensity and melodic range together; do not rely on high notes alone.
 - Sad songs: resolve line endings downward or suspend briefly before falling.
 - Sweet songs: allow upward endings and lighter repeated notes.
 - Energetic songs: use clearer rhythmic repetition and shorter note values.
+
+## Emotional Climax Rules
+
+A more emotional and激昂 chorus needs all of these, not just louder singing:
+
+- Pitch lift: chorus sits 3-5 semitones higher than verse, with the highest note on the emotional keyword.
+- Rhythm lift: pre-chorus shortens note values or increases rhythmic urgency before the chorus.
+- Drum lift: add fuller kick/snare or stronger downbeat at the chorus entry.
+- Harmony lift: add backing vocal, doubled lead, octave layer, or simple harmony on the chorus hook.
+- Instrument lift: open piano octave, add strings/pads, or add bass movement at chorus.
+- Dynamic contrast: keep verse sparse so the chorus feels bigger.
+
+Intensity guide:
+
+```text
+verse: 30-40%
+pre-chorus: 55-70%
+chorus: 85-95%
+post-chorus/outro: 50-65%
+```
+
+If the song feels emotionally flat, reduce verse density and increase pre-chorus/chorus contrast before changing the whole style.
 
 ## Vocal Range Rules
 
@@ -69,6 +98,21 @@ Always add these fields to the music prompt:
     "cadence": "",
     "hook_motif": ""
   },
+  "emotional_arc": {
+    "verse": "",
+    "pre_chorus": "",
+    "chorus": "",
+    "outro": ""
+  },
+  "climax_plan": {
+    "entry_time": "",
+    "vocal_lift": "",
+    "drums": "",
+    "harmony": "",
+    "instrument_lift": "",
+    "intensity_curve": ""
+  },
+  "arrangement_arc": "",
   "singing_constraints": []
 }
 ```
@@ -91,6 +135,7 @@ Chorus highest note lands on "不属于我".
 Do not place high notes on 的/了.
 Breathe after each line.
 Use a 3-5 note repeatable hook motif.
+Build from 35% verse intensity to 90% chorus intensity with drums, harmony, and strings entering at chorus.
 ```
 
 ## Repair When Melody Does Not Match Lyrics
@@ -101,5 +146,7 @@ If generated audio sounds wrong:
 - Lyrics rushed: reduce BPM or split lines.
 - Wrong word emphasized: list `stress_words` and `avoid_high_note_words`.
 - Chorus not memorable: define a 3-5 note hook motif and repeat it.
+- Chorus not激昂: add `climax_plan`, raise chorus intensity to 85-95%, add drum/harmony/instrument lift.
 - Vocal sounds unnatural: reduce melisma, require clear Mandarin pronunciation, add breath points.
 - Verse and chorus feel disconnected: specify shared motif between verse ending and chorus opening.
+- Whole song feels flat: make verse sparser and pre-chorus more tense before the chorus.

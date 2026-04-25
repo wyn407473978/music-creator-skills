@@ -3,10 +3,10 @@
 Core rule: never prompt music-2.6 with only a vague request such as `写一首伤感歌曲`. Use structured control, and always align melody to the lyrics before generation:
 
 ```text
-风格 + 情绪 + 节奏 + 调性 + 乐器 + 结构 + 人声 + 歌词韵律 + 旋律走向 + 歌词 + 参考 + 质量 + 时长
+风格 + 情绪 + 节奏 + 调性 + 乐器 + 结构 + 人声 + 歌词韵律 + 旋律走向 + 情绪曲线 + 高潮设计 + 歌词 + 参考 + 质量 + 时长
 ```
 
-Before using any template, create `lyric_prosody` and `melody_plan`. If the lyric is dense, reduce BPM or split the line. If the chorus has a golden line, place the highest note on the emotional keyword, not on weak particles such as 的、了、啊、吗.
+Before using any template, create `lyric_prosody`, `melody_plan`, `emotional_arc`, and `climax_plan`. If the lyric is dense, reduce BPM or split the line. If the chorus has a golden line, place the highest note on the emotional keyword, not on weak particles such as 的、了、啊、吗.
 
 ## Standard Template
 
@@ -38,6 +38,21 @@ Before using any template, create `lyric_prosody` and `melody_plan`. If the lyri
     "cadence": "{句尾如何解决}",
     "hook_motif": "{3-5个音的可哼唱动机说明}"
   },
+  "emotional_arc": {
+    "verse": "{主歌情绪强度与演唱方式}",
+    "pre_chorus": "{预副歌如何制造紧张}",
+    "chorus": "{副歌如何释放情绪}",
+    "outro": "{高潮后如何收束}"
+  },
+  "climax_plan": {
+    "entry_time": "{高潮进入时间，例如 15s}",
+    "vocal_lift": "{副歌人声如何升高/加力}",
+    "drums": "{鼓如何进入或加强}",
+    "harmony": "{和声/叠唱如何增强}",
+    "instrument_lift": "{钢琴/弦乐/合成器如何抬升}",
+    "intensity_curve": "{verse 35%, pre-chorus 60%, chorus 90%, outro 55%}"
+  },
+  "arrangement_arc": "{从稀疏到高潮再回落的编曲层次}",
   "lyrics": "{歌词内容}",
   "reference": "{参考风格/歌手，只做高层风格参考，不复制旋律歌词}",
   "quality": "high",
@@ -48,7 +63,8 @@ Before using any template, create `lyric_prosody` and `melody_plan`. If the lyri
     "one syllable per note for dense Chinese lyric lines",
     "breathe at line breaks",
     "avoid random octave jumps",
-    "avoid placing weak particles on the highest note"
+    "avoid placing weak particles on the highest note",
+    "make the chorus clearly more intense than the verse"
   ],
   "avoid": [
     "long intro",
@@ -61,7 +77,10 @@ Before using any template, create `lyric_prosody` and `melody_plan`. If the lyri
     "melody fighting the lyrics",
     "wrong lyric stress",
     "unnatural high notes",
-    "rushed pronunciation"
+    "rushed pronunciation",
+    "flat emotional arc",
+    "weak chorus lift",
+    "same intensity throughout"
   ]
 }
 ```
@@ -98,11 +117,26 @@ Use for 失恋、回忆、深夜情绪号、伤感剧情剪辑.
     "cadence": "downward resolution at line endings",
     "hook_motif": "simple 3-5 note motif that follows the chorus golden line"
   },
+  "emotional_arc": {
+    "verse": "fragile and intimate, 35% intensity",
+    "pre_chorus": "pain opens up, 60% intensity",
+    "chorus": "heartbroken release, 90% intensity",
+    "outro": "fall back to quiet regret, 55% intensity"
+  },
+  "climax_plan": {
+    "entry_time": "15s",
+    "vocal_lift": "chorus rises 3-5 semitones above verse, strongest word gets the highest note",
+    "drums": "soft drums build before chorus, fuller downbeat at chorus",
+    "harmony": "add subtle backing vocal/double on final chorus phrase",
+    "instrument_lift": "strings swell and piano opens into higher octave",
+    "intensity_curve": "verse 35%, pre-chorus 60%, chorus 90%, outro 55%"
+  },
+  "arrangement_arc": "piano and intimate vocal first, add strings in pre-chorus, full piano+strings+soft drums in chorus, strip back after climax",
   "lyrics": "{你的歌词}",
   "reference": "情绪流行, similar high-level energy to YOASOBI / Douyin sad pop, original melody and lyrics",
   "quality": "high",
   "duration": "60s",
-  "singing_constraints": ["melody must follow lyric stress", "avoid random high notes", "avoid rushing Chinese syllables", "do not place weak particles on high notes"]
+  "singing_constraints": ["melody must follow lyric stress", "avoid random high notes", "avoid rushing Chinese syllables", "do not place weak particles on high notes", "chorus must feel emotionally bigger than verse"]
 }
 ```
 
@@ -138,11 +172,26 @@ Use for 剪辑视频、转场、节奏视频、舞蹈、燃向混剪.
     "cadence": "clean cutoffs for edits",
     "hook_motif": "rhythmic 3-5 note motif matching kick/snare"
   },
+  "emotional_arc": {
+    "verse": "fast setup, 50% intensity",
+    "pre_chorus": "rising excitement, 75% intensity",
+    "chorus": "drop release, 95% intensity",
+    "outro": "loopable energy, 70% intensity"
+  },
+  "climax_plan": {
+    "entry_time": "10s",
+    "vocal_lift": "hook becomes brighter and more projected on the drop",
+    "drums": "kick and bass hit hard at drop",
+    "harmony": "short vocal chops or doubles on hook",
+    "instrument_lift": "synth/bass widen at drop",
+    "intensity_curve": "intro 55%, build 75%, drop 95%, loop 75%"
+  },
+  "arrangement_arc": "tight intro, riser build, full synth+bass+kick drop, repeatable hook",
   "lyrics": "{你的歌词}",
   "reference": "Douyin beat-sync BGM, original melody and lyrics",
   "quality": "high",
   "duration": "45-60s",
-  "singing_constraints": ["lyrics must lock to beat", "avoid dragging syllables across the drop", "keep hook easy to chant", "avoid over-high shouted notes"]
+  "singing_constraints": ["lyrics must lock to beat", "avoid dragging syllables across the drop", "keep hook easy to chant", "avoid over-high shouted notes", "drop must be clearly stronger than intro"]
 }
 ```
 

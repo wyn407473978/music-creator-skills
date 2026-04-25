@@ -73,6 +73,14 @@ Analyze lyrics before generating music. Fix lyric lines that are too long, hard 
 不要拉高的虚词：
 推荐人声音域：
 主旋律动机：3-5个音的可哼唱动机说明
+情绪曲线：主歌克制 -> 预副歌蓄力 -> 副歌释放 -> 尾声回落
+高潮设计：
+- 进入时间：
+- 人声抬升：
+- 鼓组抬升：
+- 和声/叠唱：
+- 乐器抬升：
+- 强度曲线：
 旋律自然度修正：
 ```
 
@@ -108,6 +116,21 @@ Use the music-2.6 formula: `style + mood + bpm + key + instruments + structure +
     "cadence": "",
     "hook_motif": ""
   },
+  "emotional_arc": {
+    "verse": "",
+    "pre_chorus": "",
+    "chorus": "",
+    "outro": ""
+  },
+  "climax_plan": {
+    "entry_time": "",
+    "vocal_lift": "",
+    "drums": "",
+    "harmony": "",
+    "instrument_lift": "",
+    "intensity_curve": ""
+  },
+  "arrangement_arc": "",
   "lyrics": "",
   "reference": "",
   "quality": "high",

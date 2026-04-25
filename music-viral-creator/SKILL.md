@@ -56,12 +56,14 @@ For full deliverables, follow the output contract in `references/output-contract
      - Safe vocal range, avoiding unnatural high/low jumps.
    - If a lyric line is too long for the target BPM, rewrite or split it before music generation.
    - The chorus melody must follow the strongest lyric line, not random high notes.
+   - Add an emotional arc: verse restraint -> pre-chorus tension -> chorus release -> outro afterglow.
+   - For songs that need a stronger climax, define the chorus as a combined lift in pitch, rhythm, harmony, drums, and arrangement density.
 
 5. **Music generation prompt structure**
    - Do not give a vague prompt such as "写一首伤感歌".
    - Always use the control formula: `风格 + 情绪 + 节奏 + 调性 + 乐器 + 结构 + 人声 + 歌词韵律 + 旋律走向 + 参考`.
    - Pick the closest base template from `references/music-2-6-prompt-templates.md`, then adapt it to the current trend, lyric, and platform.
-   - Include `lyric_prosody`, `melody_plan`, `vocal_range`, `phrasing`, and `singing_constraints` in the prompt.
+   - Include `lyric_prosody`, `melody_plan`, `emotional_arc`, `climax_plan`, `arrangement_arc`, `vocal_range`, `phrasing`, and `singing_constraints` in the prompt.
    - Always output a controllable JSON-like prompt for the music generator:
 
 ```json
@@ -93,6 +95,21 @@ For full deliverables, follow the output contract in `references/output-contract
     "chorus": "highest note only on the strongest golden line, repeatable 3-5 note motif",
     "cadence": "resolve downward at line endings for sadness"
   },
+  "emotional_arc": {
+    "verse": "restrained, intimate, almost whispered pain",
+    "pre_chorus": "tension rises, vocal becomes more open",
+    "chorus": "emotional release, bigger voice, stronger projection",
+    "outro": "fall back to fragile sadness"
+  },
+  "climax_plan": {
+    "entry_time": "15s",
+    "vocal_lift": "chorus rises 3-5 semitones above verse, highest note on the golden line keyword",
+    "drums": "soft drums enter before chorus, fuller kick/snare at chorus",
+    "harmony": "add backing harmonies or doubled vocal on final chorus phrase",
+    "instrument_lift": "strings swell and piano octave opens at chorus",
+    "intensity_curve": "verse 35%, pre-chorus 60%, chorus 90%, outro 55%"
+  },
+  "arrangement_arc": "start sparse with piano/vocal, add pads/strings in pre-chorus, full drums + strings + vocal doubles in chorus, remove layers after climax",
   "lyrics": "paste final lyrics here",
   "quality": "high",
   "mix": "front vocal, warm piano, soft sidechain drums, cinematic strings",
@@ -101,9 +118,11 @@ For full deliverables, follow the output contract in `references/output-contract
     "one syllable per note for dense Chinese lines unless a held vowel is natural",
     "avoid random octave jumps",
     "avoid placing weak particles like 的/了/吗 on the highest note",
-    "keep chorus singable and easy to hum"
+    "keep chorus singable and easy to hum",
+    "make the chorus clearly more intense than the verse",
+    "build emotional tension before the chorus instead of staying flat"
   ],
-  "avoid": ["overcrowded arrangement", "long intro", "unclear hook", "copied melody", "melody fighting the lyrics", "unnatural high notes", "wrong lyric stress", "rushed pronunciation"]
+  "avoid": ["overcrowded arrangement", "long intro", "unclear hook", "copied melody", "melody fighting the lyrics", "unnatural high notes", "wrong lyric stress", "rushed pronunciation", "flat emotional arc", "weak chorus lift", "same intensity throughout"]
 }
 ```
 
