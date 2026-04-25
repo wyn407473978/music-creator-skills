@@ -1,13 +1,14 @@
 # Music Viral Creator Skill
 
-`music-viral-creator` is a Hermes Agent skill for pure instrumental short-video music: DJ, EDM, rock, electronic rock, cinematic trailer rock, and high-impact BGM. It is designed for agents using minimax2.7 and music generation models such as music-2.6.
+`music-viral-creator` is a Hermes Agent skill for English short-video songs: DJ rock, EDM rock, pop rock, cinematic trailer rock, and high-impact English hooks. It is designed for agents using minimax2.7 and music generation models such as music-2.6.
 
 ## What It Does
 
-- Instrumental market trend abstraction
-- Viral DJ/rock BGM structure modeling
+- English song trend abstraction
+- Viral DJ/rock song structure modeling
+- English lyric and topline generation
 - Drop, riff, groove, and climax design
-- Structured music-2.6 instrumental prompt generation
+- Structured music-2.6 English song prompt generation
 - Instrumental drop, riff, groove, and climax control
 - Viral scoring and hard generation decisions
 - Cost control before spending generation quota
@@ -38,10 +39,11 @@ music-viral-creator/
 
 ## Core Workflow
 
-1. Analyze instrumental trends and extract reusable rules.
-2. Model the 0-30s viral BGM structure.
-3. Design the drop, riff, groove, bass, and edit points.
-4. Generate a structured music-2.6 instrumental prompt.
+1. Analyze English song trends and extract reusable rules.
+2. Model the 0-30s viral English song structure.
+3. Write a short, natural English hook and chorus.
+4. Design the drop, riff, groove, bass, and edit points.
+5. Generate a structured music-2.6 English song prompt.
 5. Score the concept and run the decision engine.
 6. Generate one or more versions only when the score justifies it.
 7. Create edit slices, release copy, and account-matrix plans.
@@ -75,18 +77,18 @@ For the first 100 posts on a new account, the skill prioritizes data collection:
 Avoid vague prompts such as:
 
 ```text
-generate powerful music
+make an English rock song
 ```
 
 Use structured control:
 
 ```text
-style + mood + bpm + key + instruments + rhythm_design + riff_motif + drop_plan + arrangement_arc + edit_points + mix + avoid
+style + mood + bpm + key + vocal + lyrics + lyric_phrasing + rhythm_design + riff_motif + chorus_drop_plan + arrangement_arc + edit_points + mix + avoid
 ```
 
 See `music-viral-creator/references/music-2-6-prompt-templates.md` for ready-to-use templates.
 
-Default output is instrumental only: no lyrics, no lead vocal. Focus on first impact, build-up, main drop, second hit, loop point, and edit-friendly transients.
+Default output is English vocal music. Focus on a short English hook, natural phrasing, chorus/drop impact, second hit, loop point, and edit-friendly transients.
 
 ## Using With Hermes
 

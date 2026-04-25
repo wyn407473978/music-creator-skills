@@ -1,304 +1,293 @@
-# music-2.6 Instrumental Prompt Templates
+# music-2.6 English Song Prompt Templates
 
-Core rule: generate **pure instrumental DJ / rock / impact BGM**, not songs with lyrics.
+Core rule: generate **English vocal songs** with DJ/rock energy, not Chinese lyrics and not pure instrumental unless requested.
 
 Use structured control:
 
 ```text
-style + mood + bpm + key + instruments + rhythm_design + riff_motif + drop_plan + arrangement_arc + edit_points + mix + avoid
+style + mood + bpm + key + vocal + lyrics + lyric_phrasing + rhythm_design + riff_motif + chorus_drop_plan + arrangement_arc + edit_points + mix + avoid
 ```
 
-## Standard Instrumental Template
+## Standard English Song Template
 
 ```json
 {
-  "style": "{DJ / EDM / electronic rock / cinematic rock / hardstyle / phonk}",
-  "mood": "{powerful, aggressive, epic, dark, energetic}",
+  "style": "EDM rock / pop rock / cinematic rock",
+  "mood": "powerful, emotional, anthemic",
   "bpm": 128,
   "key": "E minor",
-  "duration": "45-60s",
-  "instrumental_only": true,
-  "vocals": "none, no lead vocal, no lyrics",
-  "instruments": ["heavy kick", "snare", "sub bass", "distorted electric guitar", "synth lead", "riser", "impact FX"],
+  "duration": "60-90s",
+  "language": "English",
+  "vocal": {
+    "gender": "female or male",
+    "tone": "powerful, clear, modern",
+    "emotion": "determined, emotional, explosive",
+    "range": "A3-E5 female / A2-E4 male"
+  },
+  "lyrics": "{English lyrics here}",
+  "lyric_phrasing": {
+    "hook_line": "{short repeatable English hook}",
+    "rhyme_scheme": "simple pop rhyme or slant rhyme",
+    "stressed_words": ["{hook keyword}"],
+    "breath_points": "short breath before chorus/drop, no hard pause after every line",
+    "avoid_high_note_words": ["the", "a", "to", "and", "of"]
+  },
+  "topline_plan": {
+    "verse": "lower, rhythmic, natural English phrasing",
+    "pre_chorus": "rising tension",
+    "chorus": "big melodic hook, strongest word gets highest note",
+    "post_chorus": "repeat hook or chant",
+    "hook_motif": "3-5 note repeatable vocal motif"
+  },
   "rhythm_design": {
-    "drum_pattern": "four-on-floor or half-time rock hybrid",
-    "kick": "punchy and sidechained",
-    "snare_clap": "wide snare/clap on strong beats",
-    "percussion": "snare roll before drop, crash at impact",
-    "groove_feel": "tight, aggressive, edit-friendly"
+    "drum_pattern": "EDM-rock hybrid",
+    "kick": "punchy",
+    "snare_clap": "wide snare/clap",
+    "percussion": "snare build before chorus/drop",
+    "groove_feel": "tight, driving, edit-friendly"
   },
   "riff_motif": {
-    "type": "distorted guitar riff + synth stab",
-    "description": "short 1-2 bar original riff, memorable and loopable",
-    "repeat_pattern": "repeat every 2 bars with small variation",
-    "variation": "add octave layer at second hit"
+    "type": "guitar riff or synth hook",
+    "description": "short original motif supporting the vocal hook",
+    "repeat_pattern": "repeat every 2 bars",
+    "variation": "bigger layer at second hit"
   },
-  "drop_plan": {
-    "first_impact": "0-3s huge impact hit + riff preview",
-    "build_up": "5-10s riser + snare roll + filter lift",
-    "main_drop": "10-15s full drums + sub bass + guitar riff",
-    "second_hit": "20s bigger crash + wider synth/guitar layer",
-    "loop_point": "clean 4-bar loop ending"
+  "chorus_drop_plan": {
+    "entry_time": "15s",
+    "vocal_lift": "chorus rises above verse with stronger projection",
+    "drums": "full drums enter at chorus/drop",
+    "bass": "sub bass supports downbeat",
+    "guitar_or_synth": "distorted guitar or wide synth hook opens up",
+    "harmony": "add vocal doubles/harmony on hook",
+    "second_hit": "20s bigger crash and repeated hook"
   },
-  "arrangement_arc": "impact intro -> build-up -> main drop -> bigger second hit -> loopable aftershock",
+  "arrangement_arc": "hook intro -> verse/build -> pre-chorus lift -> chorus/drop -> post-chorus hook",
   "edit_points": [
-    {"time": "0-3s", "cue": "impact hook", "use": "opening cut"},
-    {"time": "10-15s", "cue": "main drop", "use": "transition / reveal"},
-    {"time": "20s", "cue": "second hit", "use": "climax / speed ramp"}
+    {"time": "0-5s", "cue": "vocal/riff hook", "use": "opening"},
+    {"time": "10-15s", "cue": "build/drop", "use": "transition"},
+    {"time": "20s", "cue": "second hit", "use": "climax"}
   ],
-  "mix": "loud, punchy, wide, heavy low end, clear kick/snare, no muddy low mids",
+  "mix": "loud, punchy, wide, clear vocal, heavy drums, controlled low end",
   "quality": "high",
   "avoid": [
-    "lyrics",
-    "lead vocal",
-    "soft ballad",
-    "long intro",
-    "weak drop",
-    "flat loop",
-    "muddy bass",
-    "generic melody",
-    "copied riff",
-    "overcrowded mix"
+    "Chinese lyrics",
+    "awkward translated English",
+    "spoken recitation",
+    "weak chorus",
+    "late drop",
+    "flat arrangement",
+    "muddy vocal",
+    "copied melody",
+    "copied riff"
   ]
 }
 ```
 
-## Template 1: DJ震撼Drop
+## Template 1: EDM Rock Anthem
 
-Use for festival, car edit, party, transformation, product reveal, fast cuts.
+Use for sports, game highlight, transformation, fast edits.
 
 ```json
 {
-  "style": "festival EDM, big room DJ instrumental",
-  "mood": "explosive, powerful, energetic",
+  "style": "EDM rock anthem, English vocal",
+  "mood": "powerful, victorious, explosive",
   "bpm": 128,
   "key": "E minor",
-  "duration": "45-60s",
-  "instrumental_only": true,
-  "vocals": "none, only optional short crowd shout FX without words",
-  "instruments": ["festival kick", "sub bass", "supersaw synth", "snare roll", "riser", "impact FX"],
-  "rhythm_design": {
-    "drum_pattern": "four-on-floor",
-    "kick": "huge punchy kick on every beat",
-    "snare_clap": "wide clap/snare on 2 and 4",
-    "percussion": "fast snare roll and crash before drop",
-    "groove_feel": "festival jump energy"
-  },
-  "riff_motif": {
-    "type": "synth stab hook",
-    "description": "short aggressive original synth motif",
-    "repeat_pattern": "repeat every 2 bars",
-    "variation": "add octave and wider stereo at 20s"
-  },
-  "drop_plan": {
-    "first_impact": "0-3s impact + synth hook preview",
-    "build_up": "5-10s riser + snare roll + filter opening",
-    "main_drop": "10-15s full kick + bass + supersaw hook",
-    "second_hit": "20s bigger impact + extra synth layer",
-    "loop_point": "clean 4-bar ending"
-  },
-  "arrangement_arc": "instant hook -> rising tension -> huge drop -> second hit -> loop",
-  "edit_points": [
-    {"time": "0-3s", "cue": "impact hook", "use": "opening punch"},
-    {"time": "10-15s", "cue": "drop", "use": "reveal / transition"},
-    {"time": "20s", "cue": "second hit", "use": "climax cut"}
-  ],
-  "mix": "club loudness, heavy sub, sharp transient, wide synth, clean low mids",
-  "quality": "high",
-  "avoid": ["lyrics", "lead vocal", "weak drop", "soft intro", "flat loop", "muddy bass"]
-}
-```
-
-## Template 2: 电子摇滚Riff
-
-Use for game highlight, sports montage, battle scene, anime fight, speed ramp.
-
-```json
-{
-  "style": "electronic rock instrumental, aggressive guitar and EDM drums",
-  "mood": "intense, rebellious, powerful",
-  "bpm": 140,
-  "key": "D minor",
-  "duration": "45-60s",
-  "instrumental_only": true,
-  "vocals": "none",
-  "instruments": ["distorted electric guitar", "power chords", "electronic drums", "sub bass", "synth bass", "crash cymbal", "impact FX"],
-  "rhythm_design": {
-    "drum_pattern": "half-time rock groove with electronic kick",
-    "kick": "deep punchy kick locked with guitar chugs",
-    "snare_clap": "heavy snare on backbeat",
-    "percussion": "tom fill before drop, crash on riff entry",
-    "groove_feel": "tight aggressive rock energy"
-  },
-  "riff_motif": {
-    "type": "distorted guitar riff",
-    "description": "original 1-bar palm-muted riff with power chord answer",
-    "repeat_pattern": "riff repeats every 2 bars",
-    "variation": "add octave guitar and synth bass at 20s"
-  },
-  "drop_plan": {
-    "first_impact": "0-3s guitar scrape + impact hit",
-    "build_up": "5-10s palm-muted chugs + riser",
-    "main_drop": "10-15s full guitar riff + drums + sub bass",
-    "second_hit": "20s bigger riff variation + crash",
-    "loop_point": "riff resolves cleanly for loop"
-  },
-  "arrangement_arc": "guitar impact -> chug build -> riff drop -> heavier second hit -> loopable riff",
-  "edit_points": [
-    {"time": "0-3s", "cue": "guitar impact", "use": "fight opening"},
-    {"time": "10-15s", "cue": "riff drop", "use": "action transition"},
-    {"time": "20s", "cue": "second riff hit", "use": "KO / speed ramp"}
-  ],
-  "mix": "wide guitars, punchy drums, controlled low end, aggressive but not muddy",
-  "quality": "high",
-  "avoid": ["lyrics", "lead vocal", "copied guitar riff", "thin guitars", "weak snare", "muddy low mids"]
-}
-```
-
-## Template 3: 电影预告燃向摇滚
-
-Use for trailer, heroic reveal, sports, epic montage, product launch.
-
-```json
-{
-  "style": "cinematic trailer rock instrumental",
-  "mood": "epic, heroic, dramatic, powerful",
-  "bpm": 100,
-  "key": "E minor",
   "duration": "60s",
-  "instrumental_only": true,
-  "vocals": "none, optional wordless choir texture only",
-  "instruments": ["taiko drums", "cinematic toms", "distorted guitar", "orchestral strings", "brass hits", "sub boom", "impact FX"],
+  "language": "English",
+  "vocal": {
+    "gender": "female",
+    "tone": "clear, powerful, modern",
+    "emotion": "unstoppable",
+    "range": "A3-E5"
+  },
+  "lyrics": "Verse: We light the dark, we break the line\nPre: Feel the thunder getting closer\nChorus: We rise, we burn, we own the night\nPost: Own the night, own the night",
+  "lyric_phrasing": {
+    "hook_line": "We own the night",
+    "rhyme_scheme": "simple anthem rhyme",
+    "stressed_words": ["rise", "burn", "own", "night"],
+    "breath_points": "breath before chorus, connect short hook phrases",
+    "avoid_high_note_words": ["the", "we"]
+  },
+  "topline_plan": {
+    "verse": "low-mid rhythmic vocal",
+    "pre_chorus": "rising melody and tension",
+    "chorus": "big hook, highest note on 'night'",
+    "post_chorus": "chant repeat of hook",
+    "hook_motif": "4-note rising anthem motif"
+  },
   "rhythm_design": {
-    "drum_pattern": "half-time cinematic rock",
-    "kick": "deep trailer boom layered with kick",
-    "snare_clap": "huge snare/tom hits",
-    "percussion": "rising tom pattern before climax",
+    "drum_pattern": "four-on-floor EDM rock",
+    "kick": "punchy sidechained kick",
+    "snare_clap": "wide clap/snare",
+    "percussion": "snare roll before chorus",
+    "groove_feel": "festival rock energy"
+  },
+  "riff_motif": {
+    "type": "distorted guitar + synth stab",
+    "description": "original 2-bar riff supporting the hook",
+    "repeat_pattern": "repeat every chorus",
+    "variation": "add octave layer at second hit"
+  },
+  "chorus_drop_plan": {
+    "entry_time": "15s",
+    "vocal_lift": "bigger belted chorus",
+    "drums": "full kick/snare at chorus",
+    "bass": "sub bass hits with downbeat",
+    "guitar_or_synth": "wide guitar and supersaw open",
+    "harmony": "vocal doubles on 'own the night'",
+    "second_hit": "20s crash + hook repeat"
+  },
+  "arrangement_arc": "hook preview -> verse -> rising pre -> chorus/drop -> chant hook",
+  "edit_points": [
+    {"time": "0-5s", "cue": "hook preview", "use": "opening"},
+    {"time": "15s", "cue": "chorus/drop", "use": "main reveal"},
+    {"time": "20s", "cue": "hook repeat", "use": "climax"}
+  ],
+  "mix": "clear lead vocal, loud drums, wide guitars/synths, heavy but clean bass",
+  "quality": "high",
+  "avoid": ["Chinese lyrics", "weak chorus", "spoken vocal", "late drop", "copied melody"]
+}
+```
+
+## Template 2: Pop Rock Heartbreak
+
+Use for emotional edits, night drive, relationship story, cinematic short video.
+
+```json
+{
+  "style": "English pop rock, emotional EDM-rock chorus",
+  "mood": "heartbroken, cinematic, powerful",
+  "bpm": 96,
+  "key": "B minor",
+  "duration": "60-90s",
+  "language": "English",
+  "vocal": {
+    "gender": "female",
+    "tone": "warm, emotional, strong chorus",
+    "emotion": "heartbroken but rising",
+    "range": "G3-D5"
+  },
+  "lyrics": "Verse: I kept your ghost in the passenger seat\nPre: Every red light brings you back to me\nChorus: I still hear you in the rain\nPost: In the rain, in the rain",
+  "lyric_phrasing": {
+    "hook_line": "I still hear you in the rain",
+    "rhyme_scheme": "emotional slant rhyme",
+    "stressed_words": ["still", "hear", "rain"],
+    "breath_points": "soft breath before chorus, connect emotional phrases",
+    "avoid_high_note_words": ["you", "in", "the"]
+  },
+  "topline_plan": {
+    "verse": "intimate lower vocal",
+    "pre_chorus": "gradual lift",
+    "chorus": "wide emotional melody, highest note on 'rain'",
+    "post_chorus": "repeat final phrase softly",
+    "hook_motif": "falling 4-note emotional motif"
+  },
+  "rhythm_design": {
+    "drum_pattern": "half-time pop rock",
+    "kick": "warm deep kick",
+    "snare_clap": "big emotional snare",
+    "percussion": "subtle tom fill into chorus",
+    "groove_feel": "cinematic night drive"
+  },
+  "riff_motif": {
+    "type": "clean guitar arpeggio into distorted chorus",
+    "description": "simple original guitar motif",
+    "repeat_pattern": "verse arpeggio, chorus power chords",
+    "variation": "add octave guitar at second chorus hit"
+  },
+  "chorus_drop_plan": {
+    "entry_time": "18s",
+    "vocal_lift": "chorus opens with stronger chest/mix voice",
+    "drums": "full snare and crash at chorus",
+    "bass": "warm bass follows root motion",
+    "guitar_or_synth": "distorted guitar widens chorus",
+    "harmony": "soft harmony on final hook phrase",
+    "second_hit": "22s extra crash and guitar layer"
+  },
+  "arrangement_arc": "intimate verse -> emotional lift -> rock chorus -> soft post-hook",
+  "edit_points": [
+    {"time": "0-5s", "cue": "guitar/vocal mood hook", "use": "opening"},
+    {"time": "18s", "cue": "chorus lift", "use": "memory reveal"},
+    {"time": "22s", "cue": "second hit", "use": "emotional climax"}
+  ],
+  "mix": "front vocal, warm guitars, big snare, clean bass, cinematic width",
+  "quality": "high",
+  "avoid": ["Chinese lyrics", "awkward English", "flat chorus", "overcrowded vocal", "copied melody"]
+}
+```
+
+## Template 3: Cinematic Trailer Rock Song
+
+Use for trailer, heroic reveal, product launch, sports montage.
+
+```json
+{
+  "style": "cinematic trailer rock with English vocal hook",
+  "mood": "epic, heroic, dramatic",
+  "bpm": 100,
+  "key": "D minor",
+  "duration": "60s",
+  "language": "English",
+  "vocal": {
+    "gender": "male",
+    "tone": "deep, powerful, cinematic",
+    "emotion": "heroic",
+    "range": "A2-E4"
+  },
+  "lyrics": "Verse: We were born from the fire\nPre: Hear the drums call our name\nChorus: We are legends tonight\nPost: Legends tonight",
+  "lyric_phrasing": {
+    "hook_line": "We are legends tonight",
+    "rhyme_scheme": "anthemic simple rhyme",
+    "stressed_words": ["legends", "tonight"],
+    "breath_points": "strong breath before chorus",
+    "avoid_high_note_words": ["we", "are"]
+  },
+  "topline_plan": {
+    "verse": "low cinematic vocal",
+    "pre_chorus": "rising chant-like delivery",
+    "chorus": "big heroic hook, highest note on 'tonight'",
+    "post_chorus": "choir-like repeat",
+    "hook_motif": "bold 3-note heroic motif"
+  },
+  "rhythm_design": {
+    "drum_pattern": "half-time trailer rock",
+    "kick": "deep trailer boom",
+    "snare_clap": "huge cinematic snare",
+    "percussion": "toms rising into chorus",
     "groove_feel": "massive heroic march"
   },
   "riff_motif": {
-    "type": "guitar + brass heroic motif",
-    "description": "short original heroic motif answered by guitar power chords",
-    "repeat_pattern": "motif repeats with larger orchestration",
-    "variation": "add choir/brass layer at 20s"
+    "type": "guitar + brass motif",
+    "description": "original heroic motif supporting vocal hook",
+    "repeat_pattern": "repeat with larger orchestration",
+    "variation": "add choir/brass at 20s"
   },
-  "drop_plan": {
-    "first_impact": "0-5s huge trailer hit + low guitar",
-    "build_up": "5-12s toms + strings rising",
-    "main_drop": "12-15s full drums + guitar + brass",
-    "second_hit": "20s biggest trailer impact",
-    "loop_point": "dramatic tail with clean re-entry"
+  "chorus_drop_plan": {
+    "entry_time": "15s",
+    "vocal_lift": "heroic chorus projection",
+    "drums": "full trailer drums",
+    "bass": "sub boom on downbeat",
+    "guitar_or_synth": "wide guitar and brass hits",
+    "harmony": "choir texture under hook",
+    "second_hit": "20s biggest trailer impact"
   },
-  "arrangement_arc": "massive hit -> cinematic build -> heroic drop -> second impact -> trailer tail",
+  "arrangement_arc": "dark verse -> drum build -> heroic chorus/drop -> choir post-hook",
   "edit_points": [
-    {"time": "0-5s", "cue": "trailer hit", "use": "title reveal"},
-    {"time": "12-15s", "cue": "heroic drop", "use": "main reveal"},
-    {"time": "20s", "cue": "biggest impact", "use": "final transformation"}
+    {"time": "0-5s", "cue": "deep vocal/trailer hit", "use": "title reveal"},
+    {"time": "15s", "cue": "heroic chorus", "use": "main reveal"},
+    {"time": "20s", "cue": "biggest hit", "use": "final transformation"}
   ],
-  "mix": "cinematic wide mix, huge impacts, clear drums, controlled sub boom",
+  "mix": "huge cinematic drums, clear male vocal, wide guitars/brass, controlled sub",
   "quality": "high",
-  "avoid": ["lyrics", "lead vocal", "small drums", "weak impact", "thin guitars", "flat trailer loop"]
-}
-```
-
-## Template 4: 黑暗赛博重低音
-
-Use for night city, tech, car, cyberpunk, villain, dark product reveal.
-
-```json
-{
-  "style": "dark cyberpunk bass instrumental, industrial EDM rock",
-  "mood": "dark, futuristic, heavy, dangerous",
-  "bpm": 132,
-  "key": "F minor",
-  "duration": "45-60s",
-  "instrumental_only": true,
-  "vocals": "none, optional robotic FX without words",
-  "instruments": ["industrial kick", "distorted bass", "metallic percussion", "dark synth lead", "electric guitar texture", "riser", "impact FX"],
-  "rhythm_design": {
-    "drum_pattern": "heavy four-on-floor with industrial percussion",
-    "kick": "deep distorted kick",
-    "snare_clap": "metallic snare hit",
-    "percussion": "glitch fills and reverse impacts",
-    "groove_feel": "dark mechanical drive"
-  },
-  "riff_motif": {
-    "type": "distorted bass motif",
-    "description": "short dark original bass pattern with synth stab answer",
-    "repeat_pattern": "repeat every 2 bars",
-    "variation": "add harsher distortion at second hit"
-  },
-  "drop_plan": {
-    "first_impact": "0-3s sub boom + metallic hit",
-    "build_up": "5-10s filter rise + glitch percussion",
-    "main_drop": "10-15s distorted bass + kick + dark synth",
-    "second_hit": "20s heavier bass distortion and impact",
-    "loop_point": "dark 4-bar loop"
-  },
-  "arrangement_arc": "sub impact -> mechanical build -> dark bass drop -> heavier second hit -> loop",
-  "edit_points": [
-    {"time": "0-3s", "cue": "sub boom", "use": "dark opening"},
-    {"time": "10-15s", "cue": "bass drop", "use": "car/tech reveal"},
-    {"time": "20s", "cue": "distortion hit", "use": "villain/impact cut"}
-  ],
-  "mix": "heavy sub, gritty distortion, clear kick, wide dark synth, no muddy low mids",
-  "quality": "high",
-  "avoid": ["lyrics", "lead vocal", "happy pop", "weak bass", "muddy distortion", "flat loop"]
-}
-```
-
-## Template 5: 硬核摇滚鼓点卡点
-
-Use for gym, fight, extreme sports, speed edits, mechanical edits.
-
-```json
-{
-  "style": "hard rock instrumental with punchy breakbeat",
-  "mood": "raw, aggressive, high-adrenaline",
-  "bpm": 150,
-  "key": "A minor",
-  "duration": "45-60s",
-  "instrumental_only": true,
-  "vocals": "none",
-  "instruments": ["distorted guitar", "live rock drums", "breakbeat layer", "bass guitar", "crash cymbals", "riser", "impact FX"],
-  "rhythm_design": {
-    "drum_pattern": "rock drums with breakbeat fills",
-    "kick": "fast punchy kick",
-    "snare_clap": "cracking rock snare",
-    "percussion": "snare fills and crash hits for cuts",
-    "groove_feel": "driving and physical"
-  },
-  "riff_motif": {
-    "type": "power chord riff",
-    "description": "short original power chord riff with syncopated rests",
-    "repeat_pattern": "repeat with drum fills every 4 bars",
-    "variation": "add lead guitar stab at second hit"
-  },
-  "drop_plan": {
-    "first_impact": "0-3s drum fill + guitar hit",
-    "build_up": "5-10s snare fill + rising guitar noise",
-    "main_drop": "10-15s full riff + breakbeat drums",
-    "second_hit": "20s crash + lead guitar stab",
-    "loop_point": "riff loop ending"
-  },
-  "arrangement_arc": "drum/guitar hit -> snare build -> riff drop -> second crash -> loop",
-  "edit_points": [
-    {"time": "0-3s", "cue": "drum fill hit", "use": "opening action"},
-    {"time": "10-15s", "cue": "riff drop", "use": "main movement"},
-    {"time": "20s", "cue": "crash + guitar stab", "use": "impact frame"}
-  ],
-  "mix": "raw guitars, cracking snare, punchy kick, energetic stereo, no vocal",
-  "quality": "high",
-  "avoid": ["lyrics", "lead vocal", "soft ballad", "weak drums", "copied riff", "loose timing"]
+  "avoid": ["Chinese lyrics", "thin vocal", "weak trailer impact", "copied melody", "flat chorus"]
 }
 ```
 
 ## Selection Rules
 
-- 车、派对、转场、产品揭示：Template 1.
-- 游戏、战斗、燃剪、运动：Template 2 or 5.
-- 电影感、英雄感、大场面：Template 3.
-- 赛博、暗黑、科技、夜景：Template 4.
-- 健身、极限运动、硬核剪辑：Template 5.
-
-For A/B tests, keep the same concept and vary `style`, `bpm`, `riff_motif`, `drop_plan`, and `mix`.
+- Sports/game/transformation: Template 1.
+- Emotional/night/relationship: Template 2.
+- Trailer/heroic/product reveal: Template 3.
+- For more rock: increase distorted guitars, live drums, lower BPM or half-time feel.
+- For more DJ: increase four-on-floor kick, synth lead, riser, sidechain bass.
