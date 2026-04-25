@@ -1,20 +1,19 @@
 # Music Viral Creator Skill
 
-`music-viral-creator` is a Hermes Agent skill for short-video music creation, viral music planning, and music account growth loops. It is designed for agents using minimax2.7 and music generation models such as music-2.6.
+`music-viral-creator` is a Hermes Agent skill for pure instrumental short-video music: DJ, EDM, rock, electronic rock, cinematic trailer rock, and high-impact BGM. It is designed for agents using minimax2.7 and music generation models such as music-2.6.
 
 ## What It Does
 
-- Market trend abstraction from popular songs
-- Viral short-video structure modeling
-- Spreadable lyric generation with golden lines
-- Structured music-2.6 prompt generation
-- Lyric-driven melody alignment for natural singing
+- Instrumental market trend abstraction
+- Viral DJ/rock BGM structure modeling
+- Drop, riff, groove, and climax design
+- Structured music-2.6 instrumental prompt generation
+- Instrumental drop, riff, groove, and climax control
 - Viral scoring and hard generation decisions
 - Cost control before spending generation quota
 - Cold-start testing for new music accounts
 - Hit-pattern cloning into original same-class works
 - Rhythm slicing for video editing systems
-- AI cover and remix strategy
 - Multi-version A/B testing
 - Derivative/UGC adaptation planning
 - Account-matrix publishing strategy
@@ -39,10 +38,10 @@ music-viral-creator/
 
 ## Core Workflow
 
-1. Analyze market trends and extract reusable rules.
-2. Model the 0-30s viral music structure.
-3. Write lyrics with spreadable golden lines.
-4. Generate a structured music-2.6 prompt.
+1. Analyze instrumental trends and extract reusable rules.
+2. Model the 0-30s viral BGM structure.
+3. Design the drop, riff, groove, bass, and edit points.
+4. Generate a structured music-2.6 instrumental prompt.
 5. Score the concept and run the decision engine.
 6. Generate one or more versions only when the score justifies it.
 7. Create edit slices, release copy, and account-matrix plans.
@@ -76,18 +75,18 @@ For the first 100 posts on a new account, the skill prioritizes data collection:
 Avoid vague prompts such as:
 
 ```text
-write a sad song
+generate powerful music
 ```
 
 Use structured control:
 
 ```text
-style + mood + bpm + key + instruments + structure + vocal + lyric_prosody + melody_plan + lyrics + reference + quality + duration
+style + mood + bpm + key + instruments + rhythm_design + riff_motif + drop_plan + arrangement_arc + edit_points + mix + avoid
 ```
 
 See `music-viral-creator/references/music-2-6-prompt-templates.md` for ready-to-use templates.
 
-Before generation, analyze each lyric line for stress words, breath points, safe vocal range, and melodic contour. This prevents common failures such as rushed lyrics, wrong high notes, random pitch jumps, and melody that fights the lyric meaning.
+Default output is instrumental only: no lyrics, no lead vocal. Focus on first impact, build-up, main drop, second hit, loop point, and edit-friendly transients.
 
 ## Using With Hermes
 

@@ -1,355 +1,304 @@
-# music-2.6 Prompt Templates
+# music-2.6 Instrumental Prompt Templates
 
-Core rule: never prompt music-2.6 with only a vague request such as `写一首伤感歌曲`. Use structured control, and always align melody to the lyrics before generation:
+Core rule: generate **pure instrumental DJ / rock / impact BGM**, not songs with lyrics.
+
+Use structured control:
 
 ```text
-风格 + 情绪 + 节奏 + 调性 + 乐器 + 结构 + 人声 + 歌词韵律 + 连唱分句 + 旋律走向 + 情绪曲线 + 高潮设计 + 歌词 + 参考 + 质量 + 时长
+style + mood + bpm + key + instruments + rhythm_design + riff_motif + drop_plan + arrangement_arc + edit_points + mix + avoid
 ```
 
-Before using any template, create `lyric_prosody`, `phrase_groups`, `legato_plan`, `breath_control`, `melody_plan`, `emotional_arc`, and `climax_plan`. If the lyric is dense, reduce BPM or split the line. If the chorus has a golden line, place the highest note on the emotional keyword, not on weak particles such as 的、了、啊、吗. Do not force a hard pause after every lyric line.
-
-## Standard Template
+## Standard Instrumental Template
 
 ```json
 {
-  "style": "{音乐风格}",
-  "mood": "{情绪}",
-  "bpm": "{节奏速度}",
-  "key": "{调性}",
-  "structure": "{歌曲结构}",
-  "instruments": ["{乐器1}", "{乐器2}"],
-  "vocal": {
-    "gender": "{male/female/none}",
-    "tone": "{音色}",
-    "emotion": "{演唱情绪}",
-    "range": "{安全音域，例如 A3-E5；避免吃力高音}"
+  "style": "{DJ / EDM / electronic rock / cinematic rock / hardstyle / phonk}",
+  "mood": "{powerful, aggressive, epic, dark, energetic}",
+  "bpm": 128,
+  "key": "E minor",
+  "duration": "45-60s",
+  "instrumental_only": true,
+  "vocals": "none, no lead vocal, no lyrics",
+  "instruments": ["heavy kick", "snare", "sub bass", "distorted electric guitar", "synth lead", "riser", "impact FX"],
+  "rhythm_design": {
+    "drum_pattern": "four-on-floor or half-time rock hybrid",
+    "kick": "punchy and sidechained",
+    "snare_clap": "wide snare/clap on strong beats",
+    "percussion": "snare roll before drop, crash at impact",
+    "groove_feel": "tight, aggressive, edit-friendly"
   },
-  "lyric_prosody": {
-    "language": "Chinese Mandarin",
-    "line_density": "{每句字数和节奏密度}",
-    "stress_words": ["{必须落强拍的词}"],
-    "phrase_groups": ["{应该连成一个乐句的词组}"],
-    "breath_points": "{弱换气/强换气位置}",
-    "pronunciation": "clear but sung legato Mandarin, not spoken recitation"
+  "riff_motif": {
+    "type": "distorted guitar riff + synth stab",
+    "description": "short 1-2 bar original riff, memorable and loopable",
+    "repeat_pattern": "repeat every 2 bars with small variation",
+    "variation": "add octave layer at second hit"
   },
-  "legato_plan": {
-    "connected_phrases": ["{上一句 -> 下一句，如果语义连贯}"],
-    "line_break_handling": "visual line breaks do not require hard pauses",
-    "note_connection": "smooth note transitions inside phrase groups",
-    "avoid_choppy_delivery": true
+  "drop_plan": {
+    "first_impact": "0-3s huge impact hit + riff preview",
+    "build_up": "5-10s riser + snare roll + filter lift",
+    "main_drop": "10-15s full drums + sub bass + guitar riff",
+    "second_hit": "20s bigger crash + wider synth/guitar layer",
+    "loop_point": "clean 4-bar loop ending"
   },
-  "breath_control": {
-    "weak_breath": "{连贯短句之间的隐藏换气}",
-    "strong_breath": "{完整句/副歌前的明显换气}",
-    "no_pause_phrases": ["{不能被拆开的词组}"]
-  },
-  "melody_plan": {
-    "verse": "{主歌旋律走向}",
-    "pre_chorus": "{预副歌如何上行铺垫}",
-    "chorus": "{副歌最高音和金句如何对应}",
-    "cadence": "{句尾如何解决}",
-    "hook_motif": "{3-5个音的可哼唱动机说明}"
-  },
-  "emotional_arc": {
-    "verse": "{主歌情绪强度与演唱方式}",
-    "pre_chorus": "{预副歌如何制造紧张}",
-    "chorus": "{副歌如何释放情绪}",
-    "outro": "{高潮后如何收束}"
-  },
-  "climax_plan": {
-    "entry_time": "{高潮进入时间，例如 15s}",
-    "vocal_lift": "{副歌人声如何升高/加力}",
-    "drums": "{鼓如何进入或加强}",
-    "harmony": "{和声/叠唱如何增强}",
-    "instrument_lift": "{钢琴/弦乐/合成器如何抬升}",
-    "intensity_curve": "{verse 35%, pre-chorus 60%, chorus 90%, outro 55%}"
-  },
-  "arrangement_arc": "{从稀疏到高潮再回落的编曲层次}",
-  "lyrics": "{歌词内容}",
-  "reference": "{参考风格/歌手，只做高层风格参考，不复制旋律歌词}",
-  "quality": "high",
-  "duration": "60-120s",
-  "singing_constraints": [
-    "melody must follow lyric stress and sentence meaning",
-    "keep pitch contour natural for Mandarin",
-    "group connected words into the same melodic phrase",
-    "use legato singing, not word-by-word recitation",
-    "one syllable per note for dense Chinese lyric lines",
-    "use weak breaths at connected line breaks",
-    "avoid random octave jumps",
-    "avoid placing weak particles on the highest note",
-    "make the chorus clearly more intense than the verse"
+  "arrangement_arc": "impact intro -> build-up -> main drop -> bigger second hit -> loopable aftershock",
+  "edit_points": [
+    {"time": "0-3s", "cue": "impact hook", "use": "opening cut"},
+    {"time": "10-15s", "cue": "main drop", "use": "transition / reveal"},
+    {"time": "20s", "cue": "second hit", "use": "climax / speed ramp"}
   ],
+  "mix": "loud, punchy, wide, heavy low end, clear kick/snare, no muddy low mids",
+  "quality": "high",
   "avoid": [
+    "lyrics",
+    "lead vocal",
+    "soft ballad",
     "long intro",
-    "muddy vocal",
+    "weak drop",
+    "flat loop",
+    "muddy bass",
     "generic melody",
-    "over-complex arrangement",
-    "copied melody",
-    "unclear chorus",
-    "weak first 5 seconds",
-    "melody fighting the lyrics",
-    "wrong lyric stress",
-    "unnatural high notes",
-    "rushed pronunciation",
-    "flat emotional arc",
-    "weak chorus lift",
-    "same intensity throughout",
-    "choppy word-by-word singing",
-    "hard pause after every line",
-    "spoken recitation style"
+    "copied riff",
+    "overcrowded mix"
   ]
 }
 ```
 
-## Template 1: 抖音情绪爆款
+## Template 1: DJ震撼Drop
 
-Use for 失恋、回忆、深夜情绪号、伤感剧情剪辑.
-
-```json
-{
-  "style": "pop ballad",
-  "mood": "sad, emotional, nostalgic",
-  "bpm": 85,
-  "key": "C minor",
-  "structure": "slow intro -> emotional build -> strong chorus at 15s",
-  "instruments": ["piano", "strings", "soft drums"],
-  "vocal": {
-    "gender": "female",
-    "tone": "soft, breathy",
-    "emotion": "heartbroken",
-    "range": "A3-E5, intimate and not strained"
-  },
-  "lyric_prosody": {
-    "language": "Chinese Mandarin",
-    "line_density": "7-11 Chinese characters per phrase, do not rush",
-    "stress_words": ["{歌词里的情绪关键词}"],
-    "phrase_groups": ["{连贯的一整句情绪表达}", "{副歌金句完整词组}"],
-    "breath_points": "weak breath between connected phrases; strong breath before chorus and after complete sentences",
-    "pronunciation": "clear but legato Mandarin, emotional singing not reading"
-  },
-  "legato_plan": {
-    "connected_phrases": ["{上半句} -> {下半句}"],
-    "line_break_handling": "connect meaning-related lyric lines; no hard pause just because of line break",
-    "note_connection": "smooth stepwise connection between syllables and phrase endings",
-    "avoid_choppy_delivery": true
-  },
-  "breath_control": {
-    "weak_breath": "hidden breath between connected clauses",
-    "strong_breath": "only before chorus entry or after full emotional sentence",
-    "no_pause_phrases": ["{不能拆开的歌词词组}"]
-  },
-  "melody_plan": {
-    "verse": "low-mid register, speech-like and stepwise",
-    "pre_chorus": "slowly rising emotional tension",
-    "chorus": "highest note lands on the strongest sad keyword, repeatable hook motif",
-    "cadence": "downward resolution at line endings",
-    "hook_motif": "simple 3-5 note motif that follows the chorus golden line"
-  },
-  "emotional_arc": {
-    "verse": "fragile and intimate, 35% intensity",
-    "pre_chorus": "pain opens up, 60% intensity",
-    "chorus": "heartbroken release, 90% intensity",
-    "outro": "fall back to quiet regret, 55% intensity"
-  },
-  "climax_plan": {
-    "entry_time": "15s",
-    "vocal_lift": "chorus rises 3-5 semitones above verse, strongest word gets the highest note",
-    "drums": "soft drums build before chorus, fuller downbeat at chorus",
-    "harmony": "add subtle backing vocal/double on final chorus phrase",
-    "instrument_lift": "strings swell and piano opens into higher octave",
-    "intensity_curve": "verse 35%, pre-chorus 60%, chorus 90%, outro 55%"
-  },
-  "arrangement_arc": "piano and intimate vocal first, add strings in pre-chorus, full piano+strings+soft drums in chorus, strip back after climax",
-  "lyrics": "{你的歌词}",
-  "reference": "情绪流行, similar high-level energy to YOASOBI / Douyin sad pop, original melody and lyrics",
-  "quality": "high",
-  "duration": "60s",
-  "singing_constraints": ["melody must follow lyric stress", "group connected words into one melodic phrase", "use legato singing instead of word-by-word reading", "avoid random high notes", "avoid rushing Chinese syllables", "do not place weak particles on high notes", "chorus must feel emotionally bigger than verse"]
-}
-```
-
-## Template 2: 短视频卡点爆款
-
-Use for 剪辑视频、转场、节奏视频、舞蹈、燃向混剪.
+Use for festival, car edit, party, transformation, product reveal, fast cuts.
 
 ```json
 {
-  "style": "electronic pop",
-  "mood": "energetic, uplifting",
-  "bpm": 110,
-  "key": "A major",
-  "structure": "fast intro -> drop at 10s -> repeatable hook",
-  "instruments": ["synth", "bass", "kick"],
-  "vocal": {
-    "gender": "female",
-    "tone": "bright",
-    "emotion": "excited",
-    "range": "B3-F5, bright but not shouted"
-  },
-  "lyric_prosody": {
-    "language": "Chinese Mandarin",
-    "line_density": "short punchy phrases, 4-8 Chinese characters for hook lines",
-    "stress_words": ["{卡点关键词}", "{动作关键词}"],
-    "breath_points": "short breaths before drop and repeated hook",
-    "pronunciation": "clear rhythmic Mandarin, tight consonants"
-  },
-  "melody_plan": {
-    "verse": "short rhythmic notes, prepare for drop",
-    "pre_chorus": "riser-like upward contour",
-    "chorus": "repeatable hook on the drop, stable pitch center",
-    "cadence": "clean cutoffs for edits",
-    "hook_motif": "rhythmic 3-5 note motif matching kick/snare"
-  },
-  "emotional_arc": {
-    "verse": "fast setup, 50% intensity",
-    "pre_chorus": "rising excitement, 75% intensity",
-    "chorus": "drop release, 95% intensity",
-    "outro": "loopable energy, 70% intensity"
-  },
-  "climax_plan": {
-    "entry_time": "10s",
-    "vocal_lift": "hook becomes brighter and more projected on the drop",
-    "drums": "kick and bass hit hard at drop",
-    "harmony": "short vocal chops or doubles on hook",
-    "instrument_lift": "synth/bass widen at drop",
-    "intensity_curve": "intro 55%, build 75%, drop 95%, loop 75%"
-  },
-  "arrangement_arc": "tight intro, riser build, full synth+bass+kick drop, repeatable hook",
-  "lyrics": "{你的歌词}",
-  "reference": "Douyin beat-sync BGM, original melody and lyrics",
-  "quality": "high",
+  "style": "festival EDM, big room DJ instrumental",
+  "mood": "explosive, powerful, energetic",
+  "bpm": 128,
+  "key": "E minor",
   "duration": "45-60s",
-  "singing_constraints": ["lyrics must lock to beat", "avoid dragging syllables across the drop", "keep hook easy to chant", "avoid over-high shouted notes", "drop must be clearly stronger than intro"]
+  "instrumental_only": true,
+  "vocals": "none, only optional short crowd shout FX without words",
+  "instruments": ["festival kick", "sub bass", "supersaw synth", "snare roll", "riser", "impact FX"],
+  "rhythm_design": {
+    "drum_pattern": "four-on-floor",
+    "kick": "huge punchy kick on every beat",
+    "snare_clap": "wide clap/snare on 2 and 4",
+    "percussion": "fast snare roll and crash before drop",
+    "groove_feel": "festival jump energy"
+  },
+  "riff_motif": {
+    "type": "synth stab hook",
+    "description": "short aggressive original synth motif",
+    "repeat_pattern": "repeat every 2 bars",
+    "variation": "add octave and wider stereo at 20s"
+  },
+  "drop_plan": {
+    "first_impact": "0-3s impact + synth hook preview",
+    "build_up": "5-10s riser + snare roll + filter opening",
+    "main_drop": "10-15s full kick + bass + supersaw hook",
+    "second_hit": "20s bigger impact + extra synth layer",
+    "loop_point": "clean 4-bar ending"
+  },
+  "arrangement_arc": "instant hook -> rising tension -> huge drop -> second hit -> loop",
+  "edit_points": [
+    {"time": "0-3s", "cue": "impact hook", "use": "opening punch"},
+    {"time": "10-15s", "cue": "drop", "use": "reveal / transition"},
+    {"time": "20s", "cue": "second hit", "use": "climax cut"}
+  ],
+  "mix": "club loudness, heavy sub, sharp transient, wide synth, clean low mids",
+  "quality": "high",
+  "avoid": ["lyrics", "lead vocal", "weak drop", "soft intro", "flat loop", "muddy bass"]
 }
 ```
 
-## Template 3: 动漫风
+## Template 2: 电子摇滚Riff
 
-Use for AI动漫视频、角色主题曲、青春成长、希望感伤.
+Use for game highlight, sports montage, battle scene, anime fight, speed ramp.
 
 ```json
 {
-  "style": "anime pop",
-  "mood": "emotional, dreamy",
-  "bpm": 90,
+  "style": "electronic rock instrumental, aggressive guitar and EDM drums",
+  "mood": "intense, rebellious, powerful",
+  "bpm": 140,
   "key": "D minor",
-  "structure": "piano intro -> build -> emotional chorus",
-  "instruments": ["piano", "strings", "drums"],
-  "vocal": {
-    "gender": "female",
-    "tone": "clear, youthful",
-    "emotion": "hopeful sadness",
-    "range": "B3-F5, youthful and clear, avoid repeated strained top notes"
+  "duration": "45-60s",
+  "instrumental_only": true,
+  "vocals": "none",
+  "instruments": ["distorted electric guitar", "power chords", "electronic drums", "sub bass", "synth bass", "crash cymbal", "impact FX"],
+  "rhythm_design": {
+    "drum_pattern": "half-time rock groove with electronic kick",
+    "kick": "deep punchy kick locked with guitar chugs",
+    "snare_clap": "heavy snare on backbeat",
+    "percussion": "tom fill before drop, crash on riff entry",
+    "groove_feel": "tight aggressive rock energy"
   },
-  "lyric_prosody": {
-    "language": "Chinese Mandarin",
-    "line_density": "medium density, 7-10 Chinese characters per phrase",
-    "stress_words": ["{角色情绪词}", "{希望/遗憾关键词}"],
-    "breath_points": "breathe between scene line and emotional line",
-    "pronunciation": "clear Mandarin with anime-pop brightness"
+  "riff_motif": {
+    "type": "distorted guitar riff",
+    "description": "original 1-bar palm-muted riff with power chord answer",
+    "repeat_pattern": "riff repeats every 2 bars",
+    "variation": "add octave guitar and synth bass at 20s"
   },
-  "melody_plan": {
-    "verse": "gentle mid register, slightly floating",
-    "pre_chorus": "clear upward lift into chorus",
-    "chorus": "wide but singable emotional arc, highest note on the main character/emotion word",
-    "cadence": "resolve with hopeful lift or soft fall",
-    "hook_motif": "memorable 4-note anime-style motif"
+  "drop_plan": {
+    "first_impact": "0-3s guitar scrape + impact hit",
+    "build_up": "5-10s palm-muted chugs + riser",
+    "main_drop": "10-15s full guitar riff + drums + sub bass",
+    "second_hit": "20s bigger riff variation + crash",
+    "loop_point": "riff resolves cleanly for loop"
   },
-  "lyrics": "{你的歌词}",
-  "reference": "Japanese anime OP/ED high-level style, original melody and lyrics",
+  "arrangement_arc": "guitar impact -> chug build -> riff drop -> heavier second hit -> loopable riff",
+  "edit_points": [
+    {"time": "0-3s", "cue": "guitar impact", "use": "fight opening"},
+    {"time": "10-15s", "cue": "riff drop", "use": "action transition"},
+    {"time": "20s", "cue": "second riff hit", "use": "KO / speed ramp"}
+  ],
+  "mix": "wide guitars, punchy drums, controlled low end, aggressive but not muddy",
   "quality": "high",
-  "duration": "60-90s",
-  "singing_constraints": ["do not overuse high notes", "keep Mandarin words intelligible", "melody follows character emotion", "avoid copied anime melody"]
+  "avoid": ["lyrics", "lead vocal", "copied guitar riff", "thin guitars", "weak snare", "muddy low mids"]
 }
 ```
 
-## Template 4: LoFi 放松
+## Template 3: 电影预告燃向摇滚
 
-Use for 学习、背景音乐、日常vlog、长尾流量.
-
-```json
-{
-  "style": "lofi",
-  "mood": "calm, relaxed",
-  "bpm": 70,
-  "key": "F major",
-  "structure": "loopable chill pattern",
-  "instruments": ["piano", "vinyl noise", "soft beat"],
-  "vocal": {
-    "gender": "none",
-    "tone": "instrumental",
-    "emotion": "peaceful",
-    "range": "instrumental"
-  },
-  "lyric_prosody": {
-    "language": "none",
-    "line_density": "instrumental, no lyrics",
-    "stress_words": [],
-    "breath_points": "loop breathing every 4 or 8 bars",
-    "pronunciation": "none"
-  },
-  "melody_plan": {
-    "verse": "soft loopable piano motif",
-    "pre_chorus": "none",
-    "chorus": "subtle motif variation, no vocal peak",
-    "cadence": "smooth loop resolution",
-    "hook_motif": "simple 3-5 note instrumental motif"
-  },
-  "lyrics": "",
-  "reference": "lofi study music",
-  "quality": "high",
-  "duration": "90s",
-  "singing_constraints": ["instrumental only", "avoid vocal artifacts", "keep motif loopable"]
-}
-```
-
-## Template 5: 翻唱改编
-
-Use for AI翻唱、账号矩阵、爆款歌曲二次演绎. Only use original lyrics when the user owns or has licensed them; otherwise rewrite lyrics and keep only high-level style direction.
+Use for trailer, heroic reveal, sports, epic montage, product launch.
 
 ```json
 {
-  "style": "acoustic cover",
-  "mood": "emotional",
-  "bpm": 80,
-  "key": "original",
-  "structure": "simple guitar + vocal",
-  "instruments": ["acoustic guitar"],
-  "vocal": {
-    "gender": "female",
-    "tone": "warm",
-    "emotion": "gentle",
-    "range": "A3-D5, warm and conversational"
-  },
-  "lyric_prosody": {
-    "language": "Chinese Mandarin",
-    "line_density": "natural cover phrasing, split long lyric lines",
-    "stress_words": ["{授权歌词或改写歌词中的情绪关键词}"],
-    "breath_points": "breathe at sentence boundaries",
-    "pronunciation": "clear intimate Mandarin"
-  },
-  "melody_plan": {
-    "verse": "simple near-speech melody",
-    "pre_chorus": "small lift only if lyrics need it",
-    "chorus": "gentle repeatable contour, avoid copying original melody",
-    "cadence": "soft acoustic resolution",
-    "hook_motif": "original 3-5 note motif, not the source melody"
-  },
-  "lyrics": "{原歌词或授权歌词；无授权时改写为原创歌词}",
-  "reference": "acoustic cover style, original arrangement",
-  "quality": "high",
+  "style": "cinematic trailer rock instrumental",
+  "mood": "epic, heroic, dramatic, powerful",
+  "bpm": 100,
+  "key": "E minor",
   "duration": "60s",
-  "singing_constraints": ["do not copy source melody", "melody must match rewritten lyric stress", "avoid unnatural high notes", "keep delivery intimate"]
+  "instrumental_only": true,
+  "vocals": "none, optional wordless choir texture only",
+  "instruments": ["taiko drums", "cinematic toms", "distorted guitar", "orchestral strings", "brass hits", "sub boom", "impact FX"],
+  "rhythm_design": {
+    "drum_pattern": "half-time cinematic rock",
+    "kick": "deep trailer boom layered with kick",
+    "snare_clap": "huge snare/tom hits",
+    "percussion": "rising tom pattern before climax",
+    "groove_feel": "massive heroic march"
+  },
+  "riff_motif": {
+    "type": "guitar + brass heroic motif",
+    "description": "short original heroic motif answered by guitar power chords",
+    "repeat_pattern": "motif repeats with larger orchestration",
+    "variation": "add choir/brass layer at 20s"
+  },
+  "drop_plan": {
+    "first_impact": "0-5s huge trailer hit + low guitar",
+    "build_up": "5-12s toms + strings rising",
+    "main_drop": "12-15s full drums + guitar + brass",
+    "second_hit": "20s biggest trailer impact",
+    "loop_point": "dramatic tail with clean re-entry"
+  },
+  "arrangement_arc": "massive hit -> cinematic build -> heroic drop -> second impact -> trailer tail",
+  "edit_points": [
+    {"time": "0-5s", "cue": "trailer hit", "use": "title reveal"},
+    {"time": "12-15s", "cue": "heroic drop", "use": "main reveal"},
+    {"time": "20s", "cue": "biggest impact", "use": "final transformation"}
+  ],
+  "mix": "cinematic wide mix, huge impacts, clear drums, controlled sub boom",
+  "quality": "high",
+  "avoid": ["lyrics", "lead vocal", "small drums", "weak impact", "thin guitars", "flat trailer loop"]
+}
+```
+
+## Template 4: 黑暗赛博重低音
+
+Use for night city, tech, car, cyberpunk, villain, dark product reveal.
+
+```json
+{
+  "style": "dark cyberpunk bass instrumental, industrial EDM rock",
+  "mood": "dark, futuristic, heavy, dangerous",
+  "bpm": 132,
+  "key": "F minor",
+  "duration": "45-60s",
+  "instrumental_only": true,
+  "vocals": "none, optional robotic FX without words",
+  "instruments": ["industrial kick", "distorted bass", "metallic percussion", "dark synth lead", "electric guitar texture", "riser", "impact FX"],
+  "rhythm_design": {
+    "drum_pattern": "heavy four-on-floor with industrial percussion",
+    "kick": "deep distorted kick",
+    "snare_clap": "metallic snare hit",
+    "percussion": "glitch fills and reverse impacts",
+    "groove_feel": "dark mechanical drive"
+  },
+  "riff_motif": {
+    "type": "distorted bass motif",
+    "description": "short dark original bass pattern with synth stab answer",
+    "repeat_pattern": "repeat every 2 bars",
+    "variation": "add harsher distortion at second hit"
+  },
+  "drop_plan": {
+    "first_impact": "0-3s sub boom + metallic hit",
+    "build_up": "5-10s filter rise + glitch percussion",
+    "main_drop": "10-15s distorted bass + kick + dark synth",
+    "second_hit": "20s heavier bass distortion and impact",
+    "loop_point": "dark 4-bar loop"
+  },
+  "arrangement_arc": "sub impact -> mechanical build -> dark bass drop -> heavier second hit -> loop",
+  "edit_points": [
+    {"time": "0-3s", "cue": "sub boom", "use": "dark opening"},
+    {"time": "10-15s", "cue": "bass drop", "use": "car/tech reveal"},
+    {"time": "20s", "cue": "distortion hit", "use": "villain/impact cut"}
+  ],
+  "mix": "heavy sub, gritty distortion, clear kick, wide dark synth, no muddy low mids",
+  "quality": "high",
+  "avoid": ["lyrics", "lead vocal", "happy pop", "weak bass", "muddy distortion", "flat loop"]
+}
+```
+
+## Template 5: 硬核摇滚鼓点卡点
+
+Use for gym, fight, extreme sports, speed edits, mechanical edits.
+
+```json
+{
+  "style": "hard rock instrumental with punchy breakbeat",
+  "mood": "raw, aggressive, high-adrenaline",
+  "bpm": 150,
+  "key": "A minor",
+  "duration": "45-60s",
+  "instrumental_only": true,
+  "vocals": "none",
+  "instruments": ["distorted guitar", "live rock drums", "breakbeat layer", "bass guitar", "crash cymbals", "riser", "impact FX"],
+  "rhythm_design": {
+    "drum_pattern": "rock drums with breakbeat fills",
+    "kick": "fast punchy kick",
+    "snare_clap": "cracking rock snare",
+    "percussion": "snare fills and crash hits for cuts",
+    "groove_feel": "driving and physical"
+  },
+  "riff_motif": {
+    "type": "power chord riff",
+    "description": "short original power chord riff with syncopated rests",
+    "repeat_pattern": "repeat with drum fills every 4 bars",
+    "variation": "add lead guitar stab at second hit"
+  },
+  "drop_plan": {
+    "first_impact": "0-3s drum fill + guitar hit",
+    "build_up": "5-10s snare fill + rising guitar noise",
+    "main_drop": "10-15s full riff + breakbeat drums",
+    "second_hit": "20s crash + lead guitar stab",
+    "loop_point": "riff loop ending"
+  },
+  "arrangement_arc": "drum/guitar hit -> snare build -> riff drop -> second crash -> loop",
+  "edit_points": [
+    {"time": "0-3s", "cue": "drum fill hit", "use": "opening action"},
+    {"time": "10-15s", "cue": "riff drop", "use": "main movement"},
+    {"time": "20s", "cue": "crash + guitar stab", "use": "impact frame"}
+  ],
+  "mix": "raw guitars, cracking snare, punchy kick, energetic stereo, no vocal",
+  "quality": "high",
+  "avoid": ["lyrics", "lead vocal", "soft ballad", "weak drums", "copied riff", "loose timing"]
 }
 ```
 
 ## Selection Rules
 
-- 伤感/失恋/回忆：start from Template 1.
-- 卡点/剪辑/转场：start from Template 2.
-- 动漫/角色/二次元：start from Template 3.
-- 放松/学习/长尾BGM：start from Template 4.
-- 翻唱/矩阵/改编：start from Template 5.
-- If generating A/B versions, keep lyrics constant and vary `style`, `bpm`, `instruments`, `vocal`, and `structure`.
-- For short-video virality, require a hook or drop before 15s; for emotional accounts, prefer chorus at 12-18s.
+- 车、派对、转场、产品揭示：Template 1.
+- 游戏、战斗、燃剪、运动：Template 2 or 5.
+- 电影感、英雄感、大场面：Template 3.
+- 赛博、暗黑、科技、夜景：Template 4.
+- 健身、极限运动、硬核剪辑：Template 5.
+
+For A/B tests, keep the same concept and vary `style`, `bpm`, `riff_motif`, `drop_plan`, and `mix`.
