@@ -55,22 +55,27 @@ Analyze lyrics before generating music. Fix lyric lines that are too long, hard 
 1. 原句：
    字数：
    语义重音：
+   应连唱词组：
    应落强拍的词：
-   换气点：
+   弱换气点：
+   强换气点：
    建议音高走向：低起 / 上行 / 下行 / 波浪 / 停顿
-   演唱风险：过长 / 拗口 / 高音不自然 / 重音错误 / 无
+   演唱风险：过长 / 拗口 / 高音不自然 / 重音错误 / 被唱成朗读 / 无
 
 2. 原句：
    字数：
    语义重音：
+   应连唱词组：
    应落强拍的词：
-   换气点：
+   弱换气点：
+   强换气点：
    建议音高走向：
    演唱风险：
 
 副歌金句：
 最高音应落在：
 不要拉高的虚词：
+不可拆开的词组：
 推荐人声音域：
 主旋律动机：3-5个音的可哼唱动机说明
 情绪曲线：主歌克制 -> 预副歌蓄力 -> 副歌释放 -> 尾声回落
@@ -106,8 +111,20 @@ Use the music-2.6 formula: `style + mood + bpm + key + instruments + structure +
     "language": "Chinese Mandarin",
     "line_density": "",
     "stress_words": [],
+    "phrase_groups": [],
     "breath_points": "",
     "pronunciation": ""
+  },
+  "legato_plan": {
+    "connected_phrases": [],
+    "line_break_handling": "",
+    "note_connection": "",
+    "avoid_choppy_delivery": true
+  },
+  "breath_control": {
+    "weak_breath": "",
+    "strong_breath": "",
+    "no_pause_phrases": []
   },
   "melody_plan": {
     "verse": "",

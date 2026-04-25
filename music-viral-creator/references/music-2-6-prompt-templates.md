@@ -3,10 +3,10 @@
 Core rule: never prompt music-2.6 with only a vague request such as `写一首伤感歌曲`. Use structured control, and always align melody to the lyrics before generation:
 
 ```text
-风格 + 情绪 + 节奏 + 调性 + 乐器 + 结构 + 人声 + 歌词韵律 + 旋律走向 + 情绪曲线 + 高潮设计 + 歌词 + 参考 + 质量 + 时长
+风格 + 情绪 + 节奏 + 调性 + 乐器 + 结构 + 人声 + 歌词韵律 + 连唱分句 + 旋律走向 + 情绪曲线 + 高潮设计 + 歌词 + 参考 + 质量 + 时长
 ```
 
-Before using any template, create `lyric_prosody`, `melody_plan`, `emotional_arc`, and `climax_plan`. If the lyric is dense, reduce BPM or split the line. If the chorus has a golden line, place the highest note on the emotional keyword, not on weak particles such as 的、了、啊、吗.
+Before using any template, create `lyric_prosody`, `phrase_groups`, `legato_plan`, `breath_control`, `melody_plan`, `emotional_arc`, and `climax_plan`. If the lyric is dense, reduce BPM or split the line. If the chorus has a golden line, place the highest note on the emotional keyword, not on weak particles such as 的、了、啊、吗. Do not force a hard pause after every lyric line.
 
 ## Standard Template
 
@@ -28,8 +28,20 @@ Before using any template, create `lyric_prosody`, `melody_plan`, `emotional_arc
     "language": "Chinese Mandarin",
     "line_density": "{每句字数和节奏密度}",
     "stress_words": ["{必须落强拍的词}"],
-    "breath_points": "{自然换气点}",
-    "pronunciation": "clear Mandarin pronunciation, do not rush syllables"
+    "phrase_groups": ["{应该连成一个乐句的词组}"],
+    "breath_points": "{弱换气/强换气位置}",
+    "pronunciation": "clear but sung legato Mandarin, not spoken recitation"
+  },
+  "legato_plan": {
+    "connected_phrases": ["{上一句 -> 下一句，如果语义连贯}"],
+    "line_break_handling": "visual line breaks do not require hard pauses",
+    "note_connection": "smooth note transitions inside phrase groups",
+    "avoid_choppy_delivery": true
+  },
+  "breath_control": {
+    "weak_breath": "{连贯短句之间的隐藏换气}",
+    "strong_breath": "{完整句/副歌前的明显换气}",
+    "no_pause_phrases": ["{不能被拆开的词组}"]
   },
   "melody_plan": {
     "verse": "{主歌旋律走向}",
@@ -60,8 +72,10 @@ Before using any template, create `lyric_prosody`, `melody_plan`, `emotional_arc
   "singing_constraints": [
     "melody must follow lyric stress and sentence meaning",
     "keep pitch contour natural for Mandarin",
+    "group connected words into the same melodic phrase",
+    "use legato singing, not word-by-word recitation",
     "one syllable per note for dense Chinese lyric lines",
-    "breathe at line breaks",
+    "use weak breaths at connected line breaks",
     "avoid random octave jumps",
     "avoid placing weak particles on the highest note",
     "make the chorus clearly more intense than the verse"
@@ -80,7 +94,10 @@ Before using any template, create `lyric_prosody`, `melody_plan`, `emotional_arc
     "rushed pronunciation",
     "flat emotional arc",
     "weak chorus lift",
-    "same intensity throughout"
+    "same intensity throughout",
+    "choppy word-by-word singing",
+    "hard pause after every line",
+    "spoken recitation style"
   ]
 }
 ```
@@ -107,8 +124,20 @@ Use for 失恋、回忆、深夜情绪号、伤感剧情剪辑.
     "language": "Chinese Mandarin",
     "line_density": "7-11 Chinese characters per phrase, do not rush",
     "stress_words": ["{歌词里的情绪关键词}"],
-    "breath_points": "breathe after each lyric line",
-    "pronunciation": "clear Mandarin, soft consonants, natural phrasing"
+    "phrase_groups": ["{连贯的一整句情绪表达}", "{副歌金句完整词组}"],
+    "breath_points": "weak breath between connected phrases; strong breath before chorus and after complete sentences",
+    "pronunciation": "clear but legato Mandarin, emotional singing not reading"
+  },
+  "legato_plan": {
+    "connected_phrases": ["{上半句} -> {下半句}"],
+    "line_break_handling": "connect meaning-related lyric lines; no hard pause just because of line break",
+    "note_connection": "smooth stepwise connection between syllables and phrase endings",
+    "avoid_choppy_delivery": true
+  },
+  "breath_control": {
+    "weak_breath": "hidden breath between connected clauses",
+    "strong_breath": "only before chorus entry or after full emotional sentence",
+    "no_pause_phrases": ["{不能拆开的歌词词组}"]
   },
   "melody_plan": {
     "verse": "low-mid register, speech-like and stepwise",
@@ -136,7 +165,7 @@ Use for 失恋、回忆、深夜情绪号、伤感剧情剪辑.
   "reference": "情绪流行, similar high-level energy to YOASOBI / Douyin sad pop, original melody and lyrics",
   "quality": "high",
   "duration": "60s",
-  "singing_constraints": ["melody must follow lyric stress", "avoid random high notes", "avoid rushing Chinese syllables", "do not place weak particles on high notes", "chorus must feel emotionally bigger than verse"]
+  "singing_constraints": ["melody must follow lyric stress", "group connected words into one melodic phrase", "use legato singing instead of word-by-word reading", "avoid random high notes", "avoid rushing Chinese syllables", "do not place weak particles on high notes", "chorus must feel emotionally bigger than verse"]
 }
 ```
 

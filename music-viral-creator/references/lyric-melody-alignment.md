@@ -7,7 +7,7 @@ Use this before creating any music-2.6 prompt with lyrics. The goal is to make t
 Do not ask the music model to invent melody from style alone. First convert the lyrics into a singable plan:
 
 ```text
-lyrics -> phrase length -> stress words -> breath points -> pitch contour -> vocal range -> prompt
+lyrics -> meaning groups -> phrase length -> stress words -> breath control -> legato plan -> pitch contour -> vocal range -> prompt
 ```
 
 For emotional songs, also plan:
@@ -21,11 +21,40 @@ verse restraint -> pre-chorus tension -> chorus release -> post-chorus/outro aft
 For each lyric line:
 
 - Count Chinese characters. Prefer 7-11 characters per sung phrase for 80-100 BPM emotional pop.
+- Group words by meaning before grouping by line breaks. A visual line break is not always a musical pause.
 - Mark semantic stress words: nouns, verbs, emotional images, and the "pain point" of the line.
 - Mark weak particles: 的、了、着、啊、吗、呢. Avoid placing these on the highest or longest note.
-- Add breath points after complete semantic units.
+- Add strong breath points after complete semantic units. Use weak/hidden breaths inside connected thoughts.
 - If a line is longer than 13 Chinese characters, split it or use faster rap-like delivery intentionally.
 - If two consecutive lines have very different lengths, adjust melody rhythm or rewrite one line.
+
+## Phrase Connection Rules
+
+Avoid making the vocal sound like reading lyrics. Plan phrase groups:
+
+- Keep connected meaning units in one melodic phrase even if the text has a line break.
+- Use weak breaths between connected clauses, not hard pauses.
+- Let the last note of one phrase lead into the next phrase when the sentence continues.
+- Do not isolate every 2-3 Chinese characters into separate melodic fragments.
+- Use legato for emotional ballads: smooth note transitions and connected vowels.
+
+Examples:
+
+```text
+Bad split:
+你走之后 / 连影子 / 都不属于我
+
+Better phrase group:
+你走之后 -> 连影子都不属于我
+```
+
+```text
+Bad split:
+我以为 / 时间 / 会替我 / 忘了你
+
+Better phrase group:
+我以为时间会替我 -> 忘了你
+```
 
 ## Melody Contour Rules
 
@@ -74,6 +103,8 @@ Use a narrower range when lyrics are dense. Dense lyrics plus high notes often c
 
 - Keep important words clear; do not rush consonants.
 - Prefer one syllable per note for dense lines.
+- Use legato connection between syllables inside one meaning group.
+- Sing phrases as emotional sentences, not as isolated words.
 - Use melisma only on open vowels or simple emotional words, not on complex phrases.
 - Do not stretch short function words.
 - Avoid sudden octave jumps unless the lyric meaning is shock, release, or a chorus explosion.
@@ -88,8 +119,20 @@ Always add these fields to the music prompt:
     "language": "Chinese Mandarin",
     "line_density": "",
     "stress_words": [],
+    "phrase_groups": [],
     "breath_points": "",
     "pronunciation": ""
+  },
+  "legato_plan": {
+    "connected_phrases": [],
+    "line_break_handling": "",
+    "note_connection": "",
+    "avoid_choppy_delivery": true
+  },
+  "breath_control": {
+    "weak_breath": "",
+    "strong_breath": "",
+    "no_pause_phrases": []
   },
   "melody_plan": {
     "verse": "",
@@ -133,7 +176,8 @@ Verse stays low-mid and speech-like.
 Pre-chorus rises gradually.
 Chorus highest note lands on "不属于我".
 Do not place high notes on 的/了.
-Breathe after each line.
+Use weak breath between connected phrases, not a hard pause after each line.
+Connect "你走之后 -> 连影子都不属于我" as one emotional musical sentence.
 Use a 3-5 note repeatable hook motif.
 Build from 35% verse intensity to 90% chorus intensity with drums, harmony, and strings entering at chorus.
 ```
@@ -144,6 +188,8 @@ If generated audio sounds wrong:
 
 - Melody too high: lower key, narrow vocal range, say "no strained high notes".
 - Lyrics rushed: reduce BPM or split lines.
+- Sounds like reading lyrics: add `phrase_groups`, `legato_plan`, and `breath_control`; remove hard pauses after every line.
+- Connected words were split apart: list them in `no_pause_phrases` and `connected_phrases`.
 - Wrong word emphasized: list `stress_words` and `avoid_high_note_words`.
 - Chorus not memorable: define a 3-5 note hook motif and repeat it.
 - Chorus not激昂: add `climax_plan`, raise chorus intensity to 85-95%, add drum/harmony/instrument lift.

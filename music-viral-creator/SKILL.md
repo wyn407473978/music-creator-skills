@@ -51,11 +51,12 @@ For full deliverables, follow the output contract in `references/output-contract
      - 每句字数/节奏密度.
      - 语义重音 and words that must land on strong beats.
      - 情绪峰值 line and required pitch lift.
-     - 换气点 and phrase length.
+     - 连唱词组、弱换气/强换气点, and phrase length.
      - Verse/pre-chorus/chorus pitch contour.
      - Safe vocal range, avoiding unnatural high/low jumps.
    - If a lyric line is too long for the target BPM, rewrite or split it before music generation.
    - The chorus melody must follow the strongest lyric line, not random high notes.
+   - Words that form one meaning unit must stay in one sung phrase; do not split them just because there is a visual line break.
    - Add an emotional arc: verse restraint -> pre-chorus tension -> chorus release -> outro afterglow.
    - For songs that need a stronger climax, define the chorus as a combined lift in pitch, rhythm, harmony, drums, and arrangement density.
 
@@ -63,7 +64,7 @@ For full deliverables, follow the output contract in `references/output-contract
    - Do not give a vague prompt such as "写一首伤感歌".
    - Always use the control formula: `风格 + 情绪 + 节奏 + 调性 + 乐器 + 结构 + 人声 + 歌词韵律 + 旋律走向 + 参考`.
    - Pick the closest base template from `references/music-2-6-prompt-templates.md`, then adapt it to the current trend, lyric, and platform.
-   - Include `lyric_prosody`, `melody_plan`, `emotional_arc`, `climax_plan`, `arrangement_arc`, `vocal_range`, `phrasing`, and `singing_constraints` in the prompt.
+   - Include `lyric_prosody`, `phrase_groups`, `legato_plan`, `breath_control`, `melody_plan`, `emotional_arc`, `climax_plan`, `arrangement_arc`, `vocal_range`, `phrasing`, and `singing_constraints` in the prompt.
    - Always output a controllable JSON-like prompt for the music generator:
 
 ```json
@@ -86,8 +87,20 @@ For full deliverables, follow the output contract in `references/output-contract
     "language": "Chinese Mandarin",
     "line_density": "short lines, 7-11 Chinese characters per phrase",
     "stress_words": ["走之后", "影子", "不属于我"],
-    "breath_points": "breathe after each lyric line; do not run two lines together",
-    "pronunciation": "clear consonants, natural Mandarin phrasing"
+    "phrase_groups": ["你走之后", "连影子都不属于我"],
+    "breath_points": "weak breath between connected phrases; strong breath only after full sentence endings",
+    "pronunciation": "clear but sung legato Mandarin, not spoken recitation"
+  },
+  "legato_plan": {
+    "connected_phrases": ["你走之后 -> 连影子都不属于我"],
+    "line_break_handling": "visual line breaks do not require hard pauses; connect meaning-related lines",
+    "note_connection": "smooth note transitions, slight overlaps between connected words",
+    "avoid_choppy_delivery": true
+  },
+  "breath_control": {
+    "weak_breath": "short hidden breath between connected clauses",
+    "strong_breath": "only after complete emotional sentence or before chorus entry",
+    "no_pause_phrases": ["连影子都不属于我"]
   },
   "melody_plan": {
     "verse": "low-mid register, mostly stepwise motion, conversational",
@@ -115,14 +128,16 @@ For full deliverables, follow the output contract in `references/output-contract
   "mix": "front vocal, warm piano, soft sidechain drums, cinematic strings",
   "singing_constraints": [
     "melody must follow lyric stress and sentence meaning",
-    "one syllable per note for dense Chinese lines unless a held vowel is natural",
+    "group connected words into the same melodic phrase",
+    "use legato singing, not word-by-word recitation",
+    "one syllable per note for dense Chinese lines, but connect syllables smoothly",
     "avoid random octave jumps",
     "avoid placing weak particles like 的/了/吗 on the highest note",
     "keep chorus singable and easy to hum",
     "make the chorus clearly more intense than the verse",
     "build emotional tension before the chorus instead of staying flat"
   ],
-  "avoid": ["overcrowded arrangement", "long intro", "unclear hook", "copied melody", "melody fighting the lyrics", "unnatural high notes", "wrong lyric stress", "rushed pronunciation", "flat emotional arc", "weak chorus lift", "same intensity throughout"]
+  "avoid": ["overcrowded arrangement", "long intro", "unclear hook", "copied melody", "melody fighting the lyrics", "unnatural high notes", "wrong lyric stress", "rushed pronunciation", "flat emotional arc", "weak chorus lift", "same intensity throughout", "choppy word-by-word singing", "hard pause after every line", "spoken recitation style"]
 }
 ```
 
