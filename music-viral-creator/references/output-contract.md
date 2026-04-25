@@ -46,9 +46,39 @@ Write verse, pre-chorus, chorus, bridge/outro as needed. After every 4 lines, ma
 传播用法：评论区置顶 / 视频字幕 / 封面标题 / 副歌截取
 ```
 
-## 4. 音乐生成 Prompt 结构体
+## 4. 歌词驱动旋律分析
 
-Use the music-2.6 formula: `style + mood + bpm + key + instruments + structure + vocal + lyrics + reference + quality + duration`.
+Analyze lyrics before generating music. Fix lyric lines that are too long, hard to breathe, or likely to be sung with wrong stress.
+
+```text
+歌词分句：
+1. 原句：
+   字数：
+   语义重音：
+   应落强拍的词：
+   换气点：
+   建议音高走向：低起 / 上行 / 下行 / 波浪 / 停顿
+   演唱风险：过长 / 拗口 / 高音不自然 / 重音错误 / 无
+
+2. 原句：
+   字数：
+   语义重音：
+   应落强拍的词：
+   换气点：
+   建议音高走向：
+   演唱风险：
+
+副歌金句：
+最高音应落在：
+不要拉高的虚词：
+推荐人声音域：
+主旋律动机：3-5个音的可哼唱动机说明
+旋律自然度修正：
+```
+
+## 5. 音乐生成 Prompt 结构体
+
+Use the music-2.6 formula: `style + mood + bpm + key + instruments + structure + vocal + lyric_prosody + melody_plan + lyrics + reference + quality + duration`.
 
 ```json
 {
@@ -61,18 +91,34 @@ Use the music-2.6 formula: `style + mood + bpm + key + instruments + structure +
   "vocal": {
     "gender": "",
     "tone": "",
-    "emotion": ""
+    "emotion": "",
+    "range": ""
+  },
+  "lyric_prosody": {
+    "language": "Chinese Mandarin",
+    "line_density": "",
+    "stress_words": [],
+    "breath_points": "",
+    "pronunciation": ""
+  },
+  "melody_plan": {
+    "verse": "",
+    "pre_chorus": "",
+    "chorus": "",
+    "cadence": "",
+    "hook_motif": ""
   },
   "lyrics": "",
   "reference": "",
   "quality": "high",
   "duration": "60-120s",
   "mix": "",
+  "singing_constraints": [],
   "avoid": []
 }
 ```
 
-## 5. 成本控制闸门
+## 6. 成本控制闸门
 
 ```text
 热度分计算：
@@ -100,7 +146,7 @@ else:
     生成音乐，并进入A/B多版本测试
 ```
 
-## 6. 爆款评分
+## 7. 爆款评分
 
 ```text
 抓耳度（前5秒）：/10
@@ -118,7 +164,7 @@ else:
 优化建议：
 ```
 
-## 7. 爆款决策引擎
+## 8. 爆款决策引擎
 
 ```text
 输入爆款评分：/50
@@ -137,7 +183,7 @@ else:
 下一步：
 ```
 
-## 8. 冷启动策略
+## 9. 冷启动策略
 
 ```text
 账号已发布数量：
@@ -156,7 +202,7 @@ else:
 第100条后总结方式：
 ```
 
-## 9. 爆款复制能力
+## 10. 爆款复制能力
 
 ```text
 输入爆款音乐：
@@ -192,7 +238,7 @@ else:
 相似度风险：
 ```
 
-## 10. 节奏切片引擎
+## 11. 节奏切片引擎
 
 ```text
 0-5秒 Hook点：
@@ -216,7 +262,7 @@ else:
 可交给剪辑系统的时间轴：
 ```
 
-## 11. AI翻唱策略
+## 12. AI翻唱策略
 
 ```text
 输入歌曲/Hook：
@@ -236,7 +282,7 @@ else:
 版权/相似度风险：
 ```
 
-## 12. 多版本生成与A/B测试
+## 13. 多版本生成与A/B测试
 
 ```text
 版本A：伤感钢琴
@@ -280,7 +326,7 @@ A/B加权分：
 选择理由：
 ```
 
-## 13. 二创适配
+## 14. 二创适配
 
 - 适配场景：
 - 不适合场景：
@@ -289,7 +335,7 @@ A/B加权分：
 - 平台建议：
 - A/B测试方向：
 
-## 14. 账号矩阵发布策略
+## 15. 账号矩阵发布策略
 
 ```text
 情绪号：
@@ -331,7 +377,7 @@ LoFi号：
 原因：
 ```
 
-## 15. 发布文案包
+## 16. 发布文案包
 
 ```text
 短视频标题 x5：
@@ -364,7 +410,7 @@ LoFi号：
 3.
 ```
 
-## 16. 发布后复盘
+## 17. 发布后复盘
 
 Use when the user provides post-publish metrics.
 
@@ -397,7 +443,7 @@ Metric guide:
 - 评论率 > 0.5%：共鸣有效；低于 0.2%：金句不够像用户心里话。
 - 转发率 > 0.8%：二创/传播性强；低于 0.3%：场景适配弱。
 
-## 17. 版权与相似度风险检查
+## 18. 版权与相似度风险检查
 
 ```text
 原歌词使用：是 / 否
@@ -408,7 +454,7 @@ Metric guide:
 处理建议：保留 / 改写歌词 / 改旋律 / 改编曲 / 仅作为高层风格参考
 ```
 
-## 18. 批量生产模式
+## 19. 批量生产模式
 
 ```text
 每日候选选题 x10：
@@ -434,7 +480,7 @@ Metric guide:
 下一批优化方向：
 ```
 
-## 19. 评论与热度学习
+## 20. 评论与热度学习
 
 Use when the user provides comments, comment keywords, heat movement, or historical performance for published music.
 

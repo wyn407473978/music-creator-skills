@@ -1,13 +1,13 @@
 ---
 name: music-viral-creator
-description: Viral short-video music creation workflow for Hermes Agent using minimax2.7. Use when analyzing popular songs, abstracting music market trends, modeling hit-song structures, writing spreadable Chinese lyrics, generating controllable music prompts, scoring release potential, making generate/no-generate decisions, planning cold-start tests, cloning hit-song patterns into original works, slicing rhythm/edit points, planning derivative/UGC adaptation, designing AI cover/remix strategies, creating A/B music versions, controlling generation cost, building account-matrix publishing plans, writing release copy, reviewing post-publish metrics, or learning from comments and music heat for short-video music.
+description: Viral short-video music creation workflow for Hermes Agent using minimax2.7. Use when analyzing popular songs, abstracting music market trends, modeling hit-song structures, writing spreadable Chinese lyrics, analyzing lyric prosody into natural melody direction, generating controllable music prompts, scoring release potential, making generate/no-generate decisions, planning cold-start tests, cloning hit-song patterns into original works, slicing rhythm/edit points, planning derivative/UGC adaptation, designing AI cover/remix strategies, creating A/B music versions, controlling generation cost, building account-matrix publishing plans, writing release copy, reviewing post-publish metrics, or learning from comments and music heat for short-video music.
 ---
 
 # Music Viral Creator
 
 Use this skill to turn market signal into a controlled, publishable short-video music concept. Optimize for patterns, hooks, emotional transmission, and remix/edit suitability rather than generic songwriting.
 
-For full deliverables, follow the output contract in `references/output-contract.md`. For music-2.6 generation prompts, use `references/music-2-6-prompt-templates.md`. For heat scoring, viral scoring, viral decision, cold-start, hit cloning, rhythm slicing, A/B selection, metric review, comment learning, and batch production rules, use `references/decision-rules.md`.
+For full deliverables, follow the output contract in `references/output-contract.md`. For music-2.6 generation prompts, use `references/music-2-6-prompt-templates.md`. For lyric-to-melody alignment and natural vocal phrasing, use `references/lyric-melody-alignment.md`. For heat scoring, viral scoring, viral decision, cold-start, hit cloning, rhythm slicing, A/B selection, metric review, comment learning, and batch production rules, use `references/decision-rules.md`.
 
 ## Operating Rules
 
@@ -45,10 +45,23 @@ For full deliverables, follow the output contract in `references/output-contract
      - Example format: `你走之后 连影子都不属于我`
    - Keep chorus lines simpler, sharper, and more repeatable than verse lines.
 
-4. **Music generation prompt structure**
+4. **Lyric-to-melody alignment**
+   - Before generating any music prompt, analyze the lyrics for natural singing.
+   - Use `references/lyric-melody-alignment.md` to produce:
+     - 每句字数/节奏密度.
+     - 语义重音 and words that must land on strong beats.
+     - 情绪峰值 line and required pitch lift.
+     - 换气点 and phrase length.
+     - Verse/pre-chorus/chorus pitch contour.
+     - Safe vocal range, avoiding unnatural high/low jumps.
+   - If a lyric line is too long for the target BPM, rewrite or split it before music generation.
+   - The chorus melody must follow the strongest lyric line, not random high notes.
+
+5. **Music generation prompt structure**
    - Do not give a vague prompt such as "写一首伤感歌".
-   - Always use the control formula: `风格 + 情绪 + 节奏 + 乐器 + 结构 + 参考`.
+   - Always use the control formula: `风格 + 情绪 + 节奏 + 调性 + 乐器 + 结构 + 人声 + 歌词韵律 + 旋律走向 + 参考`.
    - Pick the closest base template from `references/music-2-6-prompt-templates.md`, then adapt it to the current trend, lyric, and platform.
+   - Include `lyric_prosody`, `melody_plan`, `vocal_range`, `phrasing`, and `singing_constraints` in the prompt.
    - Always output a controllable JSON-like prompt for the music generator:
 
 ```json
@@ -64,16 +77,37 @@ For full deliverables, follow the output contract in `references/output-contract
   "vocal": {
     "gender": "female",
     "tone": "clear, youthful",
-    "emotion": "hopeful sadness"
+    "emotion": "hopeful sadness",
+    "range": "A3-E5, avoid strained high notes"
+  },
+  "lyric_prosody": {
+    "language": "Chinese Mandarin",
+    "line_density": "short lines, 7-11 Chinese characters per phrase",
+    "stress_words": ["走之后", "影子", "不属于我"],
+    "breath_points": "breathe after each lyric line; do not run two lines together",
+    "pronunciation": "clear consonants, natural Mandarin phrasing"
+  },
+  "melody_plan": {
+    "verse": "low-mid register, mostly stepwise motion, conversational",
+    "pre_chorus": "gradual rising contour, increase tension without big jumps",
+    "chorus": "highest note only on the strongest golden line, repeatable 3-5 note motif",
+    "cadence": "resolve downward at line endings for sadness"
   },
   "lyrics": "paste final lyrics here",
   "quality": "high",
   "mix": "front vocal, warm piano, soft sidechain drums, cinematic strings",
-  "avoid": ["overcrowded arrangement", "long intro", "unclear hook", "copied melody"]
+  "singing_constraints": [
+    "melody must follow lyric stress and sentence meaning",
+    "one syllable per note for dense Chinese lines unless a held vowel is natural",
+    "avoid random octave jumps",
+    "avoid placing weak particles like 的/了/吗 on the highest note",
+    "keep chorus singable and easy to hum"
+  ],
+  "avoid": ["overcrowded arrangement", "long intro", "unclear hook", "copied melody", "melody fighting the lyrics", "unnatural high notes", "wrong lyric stress", "rushed pronunciation"]
 }
 ```
 
-5. **Cost control gate**
+6. **Cost control gate**
    - Decide whether to spend generation quota before creating audio.
    - Calculate heat score with the formula in `references/decision-rules.md`; do not invent it subjectively.
    - Use this rule unless the user provides different thresholds:
@@ -92,7 +126,7 @@ else:
      - `原因：`
      - `省配额动作：跳过生成 / 只生成15秒demo / 只生成Prompt / 进入多版本`
 
-6. **Viral scoring**
+7. **Viral scoring**
    - Score 5 dimensions, each 0-10:
      - 抓耳度（前5秒）
      - 情绪感染力
@@ -107,7 +141,7 @@ else:
      - `24-31`: 暂不建议发布，重写Hook或副歌。
      - `<24`: 方向不成立，重做定位。
 
-7. **Viral decision engine**
+8. **Viral decision engine**
    - After scoring, make a hard generation decision. Do not only give advice.
    - Default rule:
 
@@ -123,7 +157,7 @@ else:
    - Output `决策`, `生成数量`, `推流动作`, `省配额原因`, and `下一步`.
    - If copyright risk is high, override the decision and do not generate until rewritten or licensed.
 
-8. **Cold-start strategy**
+9. **Cold-start strategy**
    - Use when the account has fewer than 100 published pieces or lacks reliable historical metrics.
    - During the first 100 pieces:
      - 强制多风格测试.
@@ -132,7 +166,7 @@ else:
      - Cover multiple lanes: 情绪钢琴、动漫、卡点电音、LoFi、翻唱/改编.
    - After 100 pieces, summarize account preference and switch to score-based filtering.
 
-9. **Hit-pattern cloning**
+10. **Hit-pattern cloning**
    - Use when the input is one viral song or one viral short-video audio.
    - Extract:
      - 情绪
@@ -147,7 +181,7 @@ else:
    - Generate 3 same-class original works. Keep the pattern, but change lyrics, melody, arrangement, title, and story angle.
    - Run copyright/similarity check before generation.
 
-10. **Rhythm slicing engine**
+11. **Rhythm slicing engine**
    - Output machine-usable edit points for the video/editing system.
    - Required slices:
      - `0-5秒`: Hook点.
@@ -155,7 +189,7 @@ else:
      - `20秒`: 副歌爆点.
    - Include beat action, lyric cue, visual cue, and editor instruction for each slice.
 
-11. **AI cover strategy**
+12. **AI cover strategy**
    - Use when the input is an existing hit song, a melody concept, or a reusable lyric/hook for account-matrix publishing.
    - Output recommended vocal timbres:
      - 少女音：甜、脆、适合暗恋/动漫/治愈。
@@ -169,7 +203,7 @@ else:
      - 弦乐版：适合剧情反转、影视感。
    - Warn when a cover/remix risks being too close to the reference. Keep melody, lyrics, and arrangement sufficiently original unless the user owns or has licensed the song.
 
-12. **Multi-version A/B generation**
+13. **Multi-version A/B generation**
    - For the same lyric or hook, generate at least 3 versions when budget allows:
      - `版本A：伤感钢琴`
      - `版本B：电音卡点`
@@ -178,7 +212,7 @@ else:
    - Auto-select the best version using the weighted A/B formula in `references/decision-rules.md`.
    - Output `推荐主推版本` and `备用矩阵版本`.
 
-13. **Derivative adaptation**
+14. **Derivative adaptation**
    - Say which scenes fit and do not fit.
    - Include recommended edit points with timestamps.
    - Include caption angles and short-video usage notes.
@@ -187,7 +221,7 @@ else:
      - `不适合：搞笑整活、快节奏带货`
      - `推荐剪辑点：12秒进入副歌，适合卡点转场`
 
-14. **Account matrix publishing**
+15. **Account matrix publishing**
    - Convert one song concept into multiple account lanes:
      - 情绪号：伤感钢琴、深夜文案、失恋回忆。
      - 动漫号：anime pop、角色主题曲、AI动漫剪辑。
@@ -196,7 +230,7 @@ else:
      - 翻唱/改编号：不同音色、不同编曲、热点借势。
    - For each lane, output platform, target audience, version to publish, hook line, and risk.
 
-15. **Release copy pack**
+16. **Release copy pack**
    - Generate platform-ready copy:
      - 5个短视频标题。
      - 5个封面文案，each under 14 Chinese characters when possible.
@@ -205,7 +239,7 @@ else:
      - 3个小红书笔记标题.
    - Copy must reuse the strongest lyric hooks and emotional keywords. Avoid generic phrases like "太好听了".
 
-16. **Post-publish review loop**
+17. **Post-publish review loop**
    - When metrics are provided, diagnose performance and decide the next action.
    - Inputs: 播放量、完播率、点赞率、收藏率、评论率、转发率、涨粉、发布时间、平台、视频类型、评论关键词。
    - Use the metric thresholds and failure handling map in `references/decision-rules.md`.
@@ -214,7 +248,7 @@ else:
      - `下一版动作`: 改Hook / 提前副歌 / 换音色 / 换编曲 / 换标题封面 / 停止该方向.
      - `是否继续消耗配额`: 是/否 and why.
 
-17. **Copyright and similarity check**
+18. **Copyright and similarity check**
    - Check every plan that uses references, covers, or existing hits.
    - Flag:
      - 原歌词是否使用。
@@ -224,7 +258,7 @@ else:
      - 是否具备授权或仅做原创风格参考。
    - Prefer "high-level style reference + original lyrics + original melody + original arrangement" for commercial or account-matrix use.
 
-18. **Batch production mode**
+19. **Batch production mode**
    - Use when the user wants account-matrix scale or daily production.
    - Generate multiple concepts first, filter with heat and viral scores, then spend generation quota only on the survivors.
    - Default daily flow:
@@ -234,7 +268,7 @@ else:
      - Publish top 2 total versions.
      - Feed post-publish metrics back into the next batch.
 
-19. **Comment and heat learning loop**
+20. **Comment and heat learning loop**
    - Use when the user provides comments, comment keywords, platform heat changes, or performance history for released music.
    - Separate comments into:
      - 情绪共鸣：用户说被击中、想起某人、循环播放。
@@ -262,6 +296,7 @@ A useful result must answer:
 - What trend law are we exploiting?
 - What happens in the first 5 seconds?
 - Which exact lyric line can spread by itself?
+- How do the lyric stress, breath points, vocal range, and melody contour align?
 - How should the music model be controlled?
 - Is it worth publishing, and what must be improved before publishing?
 - Should generation quota be spent now?

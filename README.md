@@ -8,6 +8,7 @@
 - Viral short-video structure modeling
 - Spreadable lyric generation with golden lines
 - Structured music-2.6 prompt generation
+- Lyric-driven melody alignment for natural singing
 - Viral scoring and hard generation decisions
 - Cost control before spending generation quota
 - Cold-start testing for new music accounts
@@ -81,10 +82,12 @@ write a sad song
 Use structured control:
 
 ```text
-style + mood + bpm + key + instruments + structure + vocal + lyrics + reference + quality + duration
+style + mood + bpm + key + instruments + structure + vocal + lyric_prosody + melody_plan + lyrics + reference + quality + duration
 ```
 
 See `music-viral-creator/references/music-2-6-prompt-templates.md` for ready-to-use templates.
+
+Before generation, analyze each lyric line for stress words, breath points, safe vocal range, and melodic contour. This prevents common failures such as rushed lyrics, wrong high notes, random pitch jumps, and melody that fights the lyric meaning.
 
 ## Using With Hermes
 
@@ -105,4 +108,3 @@ For scoring, cost control, cold-start, A/B, and learning rules, use:
 ```text
 music-viral-creator/references/decision-rules.md
 ```
-
